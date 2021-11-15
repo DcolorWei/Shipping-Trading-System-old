@@ -62,7 +62,7 @@ const datastore = {
             setInterval(() => {
                 //此处循环用于模拟最新区块更新
                 socket.send("test");
-            }, Math.floor(Math.random() * 10000));
+            }, 10000);
             socket.addEventListener("message", (e) => {
                 let queryData = e.data;
                 this.timeLineTable.unshift({
