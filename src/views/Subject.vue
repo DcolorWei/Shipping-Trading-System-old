@@ -79,7 +79,7 @@ export default {
     },
     methods: {
         changePage(page) {
-            if (page == "Apperance") page += "/InfoShow"; //修复刷新路由不跳转的问题
+            if (page == "Apperance") page += "/InfoShow"; //修复刷新路由不跳转o'l'm'k的问题
             this.$router.push("/Subject/" + page);
             this.showPage = page;
         },
