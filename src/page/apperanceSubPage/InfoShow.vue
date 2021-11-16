@@ -63,8 +63,8 @@ export default {
     },
     data() {
         return {
-            datablock: datastore.datablock,
-            timeLineTable: datastore.timeLineTable,
+            datablock: datastore.datablock,//获得所有区块（或者加载完成瞬间时的最新几个区块）
+            timeLineTable: datastore.timeLineTable,//时间线数据，要求实时更新，使用WebSocket
         };
     },
 

@@ -6,7 +6,7 @@
         >
             <el-submenu index="1">
                 <template slot="title">
-                    <span>资料</span>
+                    <span><strong>资料</strong></span>
                 </template>
 
                 <el-menu-item index="1-1">账号信息</el-menu-item>
@@ -15,7 +15,7 @@
 
             <el-submenu index="2">
                 <template slot="title">
-                    <span>订单</span>
+                    <span><strong>订单</strong></span>
                 </template>
 
                 <el-menu-item index="2-1">订单查询</el-menu-item>
@@ -25,7 +25,7 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">
-                    <span>安全</span>
+                    <span><strong>安全</strong></span>
                 </template>
 
                 <el-menu-item index="3-1">修改密码</el-menu-item>
