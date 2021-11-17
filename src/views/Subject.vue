@@ -34,7 +34,7 @@
                     </div>
                 </el-menu>
             </el-header>
-            <!--路由展示区-->
+            <!--路由展示区(未居中)-->
             <router-view></router-view>
             <!--路由展示区-->
         </el-container>

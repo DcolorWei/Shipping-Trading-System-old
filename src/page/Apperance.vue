@@ -1,11 +1,12 @@
 <template>
     <el-container>
         <el-aside width="168px" style="overflow: hidden">
-            <el-col>
-                <Aside :allAblePage="allAblePage" @orderPagePush="changeOrderPage"></Aside>
-            </el-col>
+            <Aside :allAblePage="allAblePage" @orderPagePush="changeOrderPage"></Aside>
         </el-aside>
-        <router-view></router-view>
+        <!--路由展示区(居中)-->
+        <div style="margin: 0 auto">
+            <router-view></router-view>
+        </div>
     </el-container>
 </template>
 <script>
@@ -17,11 +18,8 @@ export default {
     name: "Apperance",
     data() {
         return {
-            allAblePage:[
-                'OrderMange',
-                'OrderSearch'
-            ]
-        }
+            allAblePage: ["OrderMange", "OrderSearch"],
+        };
     },
     components: {
         Aside,
