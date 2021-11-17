@@ -7,6 +7,7 @@
                     class="my_timeline_item_line"
                     :style="{
                         width: getLineWidth(item.type, shiproute.length),
+                        borderColor: linecolor(item.type),
                     }"
                 ></div>
                 <!--圈-->
@@ -75,20 +76,42 @@ export default {
             }
         },
 
-        getLineWidth(type, length) {//控制线的长度
-            let asailing = 0;
-            for (let i in this.shiproute) {
-                if (this.shiproute[i].type == "sailing") asailing = 1;
-            }
+        linecolor(type) {
             switch (type) {
-                case "justpassed":
-                    return 400 / (length - 1 - asailing) + "px";
+                case "start":
+                    return "green";
                     break;
-                case "sailing":
-                    return 400 / (length - 1 - asailing) + "px";
+                case "passed":
+                    return "green";
+                    break;
+                case "justpassed":
+                    return "green";
                     break;
                 default:
-                    return 800 / (length - 1 - asailing) + "px";
+                    break;
+            }
+        },
+
+        getLineWidth(type, length) {
+            //控制线的长度
+            let sailing = 0;
+            let juststart = 1;
+            for (let i in this.shiproute) {
+                if (this.shiproute[i].type == "sailing") sailing = 1;
+                if (this.shiproute[i].type == "justpassed"||this.shiproute[i].type == "porting") juststart = 0;
+            }
+            switch (type) {
+                case "start":
+                    return 800 / (length - 1 - sailing) / (juststart + 1) + "px";
+                    break;
+                case "justpassed":
+                    return 400 / (length - 1 - sailing) + "px";
+                    break;
+                case "sailing":
+                    return 400 / (length - 1 - sailing) + "px";
+                    break;
+                default:
+                    return 800 / (length - 1 - sailing) + "px";
                     break;
             }
         },
@@ -116,7 +139,6 @@ export default {
     height: 60px;
     padding-left: 60px;
     display: inline-block;
-    float: left;
     margin-top: 2px;
     white-space: nowrap;
 }
@@ -138,8 +160,7 @@ export default {
 .my_timeline_item:last-child .my_timeline_item_line:nth-child(1) {
     display: none;
 }
-
-.start::before {
+.start .start::before {
     content: "✔️";
 }
 .passed::before {

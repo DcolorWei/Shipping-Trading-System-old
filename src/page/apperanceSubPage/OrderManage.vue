@@ -6,13 +6,13 @@
                     <el-table-column type="expand">
                         <template #default="props">
                             <div>
+                                <CrossWiseTimeline
+                                    :shiproute="props.row.shipRoute"
+                                ></CrossWiseTimeline>
                                 <div style="padding-left: 100px">
                                     <p>区块链：{{ props.row.blockchain }}</p>
                                     <p>上链时间：{{ props.row.orderTime }}</p>
                                 </div>
-                                <CrossWiseTimeline
-                                    :shiproute="props.row.shipRoute"
-                                ></CrossWiseTimeline>
                             </div>
                         </template>
                     </el-table-column>
@@ -84,7 +84,7 @@ export default {
             ],
         };
     },
-    
+
     components: {
         shipRoute,
         CrossWiseTimeline,

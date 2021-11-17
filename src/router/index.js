@@ -14,8 +14,11 @@ import About from "../page/About"
 
 //仪表页面路由
 import InfoShow from '../page/apperanceSubPage/InfoShow'
+import AccountInfo from "../page/apperanceSubPage/AccountInfo.vue"
+import ChangeInfo from "../page/apperanceSubPage/ChangeInfo.vue"
 import OrderManage from "../page/apperanceSubPage/OrderManage.vue"
 import OrderSearch from "../page/apperanceSubPage/OrderSearch.vue"
+import ChangePasswd from "../page/apperanceSubPage/Changepasswd.vue"
 
 Vue.use(ElementUI)
 Vue.use(Router)
