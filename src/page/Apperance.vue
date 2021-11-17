@@ -2,7 +2,7 @@
     <el-container>
         <el-aside width="168px" style="overflow: hidden">
             <el-col>
-                <Aside @orderPagePush="changeOrderPage"></Aside>
+                <Aside :allAblePage="allAblePage" @orderPagePush="changeOrderPage"></Aside>
             </el-col>
         </el-aside>
         <router-view></router-view>
@@ -12,12 +12,22 @@
 import Aside from "../components/apperance/Aside.vue";
 import InfoShow from "./apperanceSubPage/InfoShow.vue";
 import OrderManage from "./apperanceSubPage/OrderManage.vue";
+import OrderSearch from "./apperanceSubPage/OrderSearch.vue";
 export default {
     name: "Apperance",
+    data() {
+        return {
+            allAblePage:[
+                'OrderMange',
+                'OrderSearch'
+            ]
+        }
+    },
     components: {
         Aside,
         InfoShow,
         OrderManage,
+        OrderSearch,
     },
     mounted() {
         this.$router.push("/Subject/Apperance/InfoShow");

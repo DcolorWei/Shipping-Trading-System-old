@@ -15,6 +15,7 @@ import About from "../page/About"
 //仪表页面路由
 import InfoShow from '../page/apperanceSubPage/InfoShow'
 import OrderManage from "../page/apperanceSubPage/OrderManage.vue"
+import OrderSearch from "../page/apperanceSubPage/OrderSearch.vue"
 
 Vue.use(ElementUI)
 Vue.use(Router)
@@ -53,9 +54,29 @@ export default new Router({
                             component: InfoShow
                         },
                         {
+                            path: 'accountinfo',
+                            name: 'AccountInfo',
+                            component:AccountInfo
+                        },
+                        {
+                            path: 'changeinfo',
+                            name: 'ChangeInfo',
+                            component: ChangeInfo
+                        },
+                        {
+                            path: 'changepasswd',
+                            name: 'ChangePasswd',
+                            component: ChangePasswd
+                        },
+                        {
                             path: 'ordermanage',
                             name: 'OrderManage',
                             component: OrderManage
+                        },
+                        {
+                            path: 'ordersearch',
+                            name: 'OrderSearch',
+                            component: OrderSearch
                         },
                     ]
                 },
