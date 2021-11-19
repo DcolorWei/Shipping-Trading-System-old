@@ -2,6 +2,7 @@
     <div>
         <el-container>
             <el-main>
+                <AddOrderTable/>
                 <el-table :data="tabledata" style="width: 100%" stripe>
                     <el-table-column type="expand">
                         <template #default="props">
@@ -32,12 +33,14 @@
 
 <script>
 import CrossWiseTimeline from "@/components/apperance_order/CrossWiseTimeline";
+import AddOrderTable from "@/components/apperance_order/AddOrderTable";
 import tableData from "../../../static/data/tabledata.ts";
 import shipRoute from "../../../static/data/shiproute.ts";
 export default {
     name: "OrderManage",
     data() {
         return {
+            a: "none",
             tabledata: tableData, //通过axios获取需要的订单数据
             shiproute: shipRoute, //通过axios获取需要的船舶航行数据
             tableItem: [
@@ -88,6 +91,7 @@ export default {
     components: {
         shipRoute,
         CrossWiseTimeline,
+        AddOrderTable,
         tableData,
     },
 };
