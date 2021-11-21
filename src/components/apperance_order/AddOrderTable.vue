@@ -39,15 +39,27 @@
                     </el-col>
                 </el-row>
 
-                <el-row :gutter="20">
-                    <el-col :span="24">
+                <el-row :gutter="10">
+                    <el-col :span="9">
+                        <el-form-item label="上链时间" prop="a">
+                            <el-date-picker
+                                v-model="chainTime"
+                                type="datetime"
+                                placeholder="Select date and time"
+                                format="yyyy-MM-DD HH:mm"
+                            >
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="15">
                         <el-form-item label="运输周期" prop="a">
                             <el-date-picker
-                                v-model="value1"
+                                v-model="allTime"
                                 type="datetimerange"
                                 range-separator="-"
                                 start-placeholder="预定发货时间"
                                 end-placeholder="预定抵达时间"
+                                format="yyyy-MM-DD HH:mm"
                             >
                             </el-date-picker>
                         </el-form-item>
@@ -67,14 +79,8 @@ export default {
     name: "AddOrderTable",
     data() {
         return {
-            startTime: {
-                date: "",
-                time: "",
-            },
-            endTime: {
-                date: "",
-                time: "",
-            },
+            chainTime: "",
+            allTime: "",
             addOrderVisible: false,
             form: {
                 id: "",
@@ -94,8 +100,6 @@ export default {
             this.$refs.ruleForm.validate((valid) => {
                 if (valid) {
                     this.addOrderVisible = false;
-                } else {
-                    console.log("输入错误");
                 }
             });
         },
@@ -110,3 +114,8 @@ export default {
     },
 };
 </script>
+<style scoped>
+.el-button--mini {
+    display: none;
+}
+</style>
