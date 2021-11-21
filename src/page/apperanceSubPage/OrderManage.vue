@@ -2,7 +2,7 @@
     <div>
         <el-container>
             <el-main>
-                <AddOrderTable/>
+                <AddOrderTable />
                 <el-table :data="tabledata" style="width: 100%" stripe>
                     <el-table-column type="expand">
                         <template #default="props">
@@ -33,7 +33,6 @@
 
 <script>
 import CrossWiseTimeline from "@/components/apperance_order/CrossWiseTimeline";
-import AddOrderTable from "@/components/apperance_order/AddOrderTable";
 import tableData from "../../../static/data/tabledata.ts";
 import shipRoute from "../../../static/data/shiproute.ts";
 export default {
@@ -91,7 +90,6 @@ export default {
     components: {
         shipRoute,
         CrossWiseTimeline,
-        AddOrderTable,
         tableData,
     },
 };

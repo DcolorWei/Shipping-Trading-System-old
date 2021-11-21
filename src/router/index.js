@@ -18,8 +18,13 @@ import AccountInfo from "../page/apperanceSubPage/AccountInfo.vue"
 import ChangeInfo from "../page/apperanceSubPage/ChangeInfo.vue"
 import OrderManage from "../page/apperanceSubPage/OrderManage.vue"
 import OrderSearch from "../page/apperanceSubPage/OrderSearch.vue"
+import OrderAdd from "../page/apperanceSubPage/OrderAdd.vue"
 import ChangePasswd from "../page/apperanceSubPage/Changepasswd.vue"
 
+//添加订单的表单路由
+import setCargoInfo from "../components/apperance_order/setCargoInfo.vue"
+import setBoxesInfo from "../components/apperance_order/setBoxesInfo.vue"
+import setShipcompanyInfo from "../components/apperance_order/setShipcompanyInfo.vue"
 Vue.use(ElementUI)
 Vue.use(Router)
 
@@ -59,7 +64,7 @@ export default new Router({
                         {
                             path: 'accountinfo',
                             name: 'AccountInfo',
-                            component:AccountInfo
+                            component: AccountInfo
                         },
                         {
                             path: 'changeinfo',
@@ -80,6 +85,28 @@ export default new Router({
                             path: 'ordersearch',
                             name: 'OrderSearch',
                             component: OrderSearch
+                        },
+                        {
+                            path: 'orderadd',
+                            name: 'OrderAdd',
+                            component: OrderAdd,
+                            children: [
+                                {
+                                    path: 'setcargoinfo',
+                                    name: 'setCargoInfo',
+                                    component: setCargoInfo
+                                },
+                                {
+                                    path: 'setboxesinfo',
+                                    name: 'setBoxesInfo',
+                                    component: setBoxesInfo
+                                },
+                                {
+                                    path: 'setShipcompanyinfo',
+                                    name: 'setShipcompanyInfo',
+                                    component: setShipcompanyInfo
+                                },
+                            ]
                         },
                     ]
                 },

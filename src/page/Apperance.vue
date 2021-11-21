@@ -14,6 +14,7 @@ import Aside from "../components/apperance/Aside.vue";
 import InfoShow from "./apperanceSubPage/InfoShow.vue";
 import OrderManage from "./apperanceSubPage/OrderManage.vue";
 import OrderSearch from "./apperanceSubPage/OrderSearch.vue";
+import OrderAdd from "./apperanceSubPage/OrderAdd.vue";
 export default {
     name: "Apperance",
     data() {
@@ -26,6 +27,7 @@ export default {
         InfoShow,
         OrderManage,
         OrderSearch,
+        OrderAdd,
     },
     mounted() {
         this.$router.push("/Subject/Apperance/InfoShow");

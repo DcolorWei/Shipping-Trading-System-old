@@ -23,6 +23,9 @@
                 <el-menu-item index="2-2" @click="sendOrderPage('OrderManage')"
                     >订单管理</el-menu-item
                 >
+                <el-menu-item index="2-3" @click="sendOrderPage('OrderAdd')"
+                    >新建订单</el-menu-item
+                >
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">
