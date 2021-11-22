@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-view></router-view>
+        <router-view :form="form"></router-view>
     </div>
 </template>
 
@@ -12,16 +12,19 @@ export default {
     name: "OrderAdd",
     data() {
         return {
-            chainTime: "",
-            allTime: "",
             addOrderVisible: false,
             form: {
                 id: "",
                 name: "",
+                type: "",
+                qua: "",
+                allTime: "",
             },
         };
     },
-
+    mounted() {
+        this.$router.push("OrderAdd/setCargoInfo");
+    },
     components: {
         setCargoInfo,
         setBoxesInfo,
