@@ -5,7 +5,7 @@
             <!--四个数据展示区块-->
             <div
                 class="blocklist"
-                v-style="{
+                :style="{
                     height: 300 + 'px',
                 }"
             >

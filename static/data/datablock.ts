@@ -70,8 +70,8 @@ const datastore = {
                     PreviousHash: queryData.substring(0, 4),
                     Time: new Date().toLocaleString(),
                 });
-                this.datablock[0].qua=Number(this.datablock[0].qua)+1;
-                this.datablock[1].qua=Number(this.datablock[1].qua)+1;
+                this.datablock[0].qua = this.timeLineTable.length - 1;
+                this.datablock[1].qua = this.timeLineTable.length - 1;
             });
         });
     }
