@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-view :form="form"></router-view>
+        <router-view :form="form" @changeForm="changeForm"></router-view>
     </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
         };
     },
     mounted() {
-        this.$router.push("OrderAdd/setCargoInfo");
+        this.$router.push("setCargoInfo");
     },
     components: {
         setCargoInfo,
@@ -43,6 +43,9 @@ export default {
                     this.addOrderVisible = false;
                 }
             });
+        },
+        changeForm(form) {
+            this.$router.push(form);
         },
     },
     setup() {

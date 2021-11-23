@@ -23,7 +23,7 @@
                 <el-menu-item index="2-2" @click="sendOrderPage('OrderManage')"
                     >订单管理</el-menu-item
                 >
-                <el-menu-item index="2-3" @click="sendOrderPage('OrderAdd')"
+                <el-menu-item index="2-3" @click="sendOrderPage('OrderAdd/setCargoInfo')"
                     >新建订单</el-menu-item
                 >
             </el-submenu>

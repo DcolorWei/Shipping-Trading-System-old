@@ -1,7 +1,12 @@
 <template>
     <el-container>
         <el-main>
-            <el-form :model="form" ref="ruleForm"  label-position="left" style="margin: 0 10% ">
+            <el-form
+                :model="form"
+                ref="ruleForm"
+                label-position="left"
+                style="margin: 0 10%"
+            >
                 <el-row :gutter="20">
                     <el-col :span="16">
                         <el-form-item label="货物ID" prop="name">
@@ -125,12 +130,10 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <el-row :gutter="20">
-                    
-                </el-row>
+                <el-row :gutter="20"> </el-row>
             </el-form>
             <br />
-            <el-button type="primary">下一步</el-button>
+            <el-button type="primary" @click="next">下一步</el-button>
         </el-main>
     </el-container>
 </template>
@@ -218,6 +221,9 @@ export default {
             if (this.LinePorts.value2 >= this.LinePorts.value3) {
                 this.LinePorts.value3 = "";
             }
+        },
+        next() {
+            this.$emit("changeForm", "setBoxesInfo");
         },
     },
 };
