@@ -11,7 +11,7 @@ import setCargoInfo from "@/components/apperance_order/setCargoInfo.vue";
 import setBoxesInfo from "@/components/apperance_order/setBoxesInfo.vue";
 import setShipcompanyInfo from "@/components/apperance_order/setShipcompanyInfo.vue";
 
-import portlist from "../../../static/data/portlist.ts";
+import portlist from "@/assets/data/portlist.ts";
 export default {
     name: "OrderAdd",
     data() {
