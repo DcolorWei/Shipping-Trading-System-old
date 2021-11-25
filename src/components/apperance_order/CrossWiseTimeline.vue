@@ -23,7 +23,8 @@
 
                 <!--标注-->
                 <div
-                    v-bind:class="item.type + ' my_timeline_item_content'"
+                    v-bind:class="item.type"
+                    style="text-align: left"
                     :style="{
                         color: '#111',
                         fontSize: 14 + 'px',
@@ -98,7 +99,11 @@ export default {
             let juststart = 1;
             for (let i in this.shiproute) {
                 if (this.shiproute[i].type == "sailing") sailing = 1;
-                if (this.shiproute[i].type == "justpassed"||this.shiproute[i].type == "porting") juststart = 0;
+                if (
+                    this.shiproute[i].type == "justpassed" ||
+                    this.shiproute[i].type == "porting"
+                )
+                    juststart = 0;
             }
             switch (type) {
                 case "start":
@@ -138,6 +143,7 @@ export default {
     width: 900px;
     height: 60px;
     padding-left: 60px;
+    padding-right: 90px;
     display: inline-block;
     margin-top: 2px;
     white-space: nowrap;
@@ -160,7 +166,7 @@ export default {
 .my_timeline_item:last-child .my_timeline_item_line:nth-child(1) {
     display: none;
 }
-.start .start::before {
+.start::before {
     content: "✔️";
 }
 .passed::before {

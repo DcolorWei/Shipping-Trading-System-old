@@ -1,10 +1,12 @@
 <template>
     <div>
-        <router-view :form="form" @changeForm="changeForm"></router-view>
+        <CrossWiseTimeline :shiproute="shipRoute"></CrossWiseTimeline>
+        <router-view :form="form" @changeForm="changeForm" @addBox="addBox"></router-view>
     </div>
 </template>
 
 <script>
+import CrossWiseTimeline from "@/components/apperance_order/CrossWiseTimeline";
 import setCargoInfo from "@/components/apperance_order/setCargoInfo.vue";
 import setBoxesInfo from "@/components/apperance_order/setBoxesInfo.vue";
 import setShipcompanyInfo from "@/components/apperance_order/setShipcompanyInfo.vue";
@@ -12,11 +14,25 @@ export default {
     name: "OrderAdd",
     data() {
         return {
+            shipRoute: [
+                {
+                    site: "",
+                    type: "porting",
+                },
+                {
+                    site: "",
+                    type: "end",
+                },
+                {
+                    site: "",
+                    type: "end",
+                },
+            ],
             addOrderVisible: false,
             form: {
                 id: "",
                 name: "",
-                type: "",
+                text: "",
                 qua: "",
                 allTime: "",
                 Line: {
@@ -88,6 +104,17 @@ export default {
                     value3: "",
                 },
                 unit: "",
+                boxesData: [
+                    {
+                        no: "1",
+                        chain: "asjdsjdkk",
+                    },
+                    {
+                        last: true,
+                    },
+                ],
+
+                //form数据的终点，得放进store里
             },
         };
     },
@@ -95,6 +122,7 @@ export default {
         this.$router.push("setCargoInfo");
     },
     components: {
+        CrossWiseTimeline,
         setCargoInfo,
         setBoxesInfo,
         setShipcompanyInfo,
@@ -115,6 +143,67 @@ export default {
         },
         changeForm(form) {
             this.$router.push(form);
+            switch (form) {
+                case "setCargoInfo":
+                    this.shipRoute = [
+                        {
+                            site: "",
+                            type: "porting",
+                        },
+                        {
+                            site: "",
+                            type: "end",
+                        },
+                        {
+                            site: "",
+                            type: "end",
+                        },
+                    ];
+                    break;
+                case "setBoxesInfo":
+                    this.shipRoute = [
+                        {
+                            site: "",
+                            type: "passed",
+                        },
+                        {
+                            site: "",
+                            type: "porting",
+                        },
+                        {
+                            site: "",
+                            type: "end",
+                        },
+                    ];
+                    break;
+                case "setShipcompanyInfo":
+                    this.shipRoute = [
+                        {
+                            site: "",
+                            type: "passed",
+                        },
+                        {
+                            site: "",
+                            type: "passed",
+                        },
+                        {
+                            site: "",
+                            type: "porting",
+                        },
+                    ];
+                    break;
+                default:
+                    break;
+            }
+        },
+        addBox(boxInfo) {
+            this.form.boxesData[this.form.boxesData.length - 1] = {
+                no: this.form.boxesData.length,
+                chain: boxInfo,
+            };
+            this.form.boxesData[this.form.boxesData.length] = {
+                last: true,
+            };
         },
     },
     setup() {

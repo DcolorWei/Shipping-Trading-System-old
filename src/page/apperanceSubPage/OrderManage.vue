@@ -2,10 +2,9 @@
     <div>
         <el-container>
             <el-main>
-                <AddOrderTable />
                 <el-table :data="tabledata" style="width: 100%" stripe>
                     <el-table-column type="expand">
-                        <template #default="props">
+                        <template slot-scope="props">
                             <div>
                                 <CrossWiseTimeline
                                     :shiproute="props.row.shipRoute"
@@ -33,8 +32,8 @@
 
 <script>
 import CrossWiseTimeline from "@/components/apperance_order/CrossWiseTimeline";
-import tableData from "../../../static/data/tabledata.ts";
-import shipRoute from "../../../static/data/shiproute.ts";
+import tableData from "@/assets/data/tabledata.ts";
+import shipRoute from "@/assets/data/shiproute.ts";
 export default {
     name: "OrderManage",
     data() {

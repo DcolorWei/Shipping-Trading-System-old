@@ -52,7 +52,7 @@
 import DataInfo from "../../components/apperance/DataInfo.vue";
 import EchartsTable from "../../components/apperance/EchartsTable.vue";
 import Timeline from "../../components/apperance/Timeline.vue";
-import datastore from "../../../static/data/datablock.ts";
+import datastore from "@/assets/data/datablock.ts";
 export default {
     name: "Infoshow",
     components: {

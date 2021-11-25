@@ -42,7 +42,6 @@ export default {
             return pwd;
         }
     },
-    methods: {},
 };
 </script>
 
