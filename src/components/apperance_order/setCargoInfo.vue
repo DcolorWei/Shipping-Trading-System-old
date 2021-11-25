@@ -32,7 +32,7 @@
                     </el-col>
                     <el-col :span="5">
                         <el-form-item label="子类型" prop="name">
-                            <el-input v-model="form.type"></el-input>
+                            <el-input v-model="form.subtype"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="3">
@@ -47,7 +47,7 @@
                     </el-col>
                     <el-col :span="3">
                         <el-form-item label="箱数" prop="name">
-                            <el-input v-model="form.qua"></el-input>
+                            <el-input v-model="form.boxQua"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>

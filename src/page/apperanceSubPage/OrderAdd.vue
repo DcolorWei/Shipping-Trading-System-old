@@ -34,9 +34,10 @@ export default {
             form: {
                 id: "",
                 name: "",
-                text: "",
+                type: "",
                 qua: "",
                 allTime: "",
+                unit: "",
                 Line: portlist.line,
                 isSelectLine: true, //控制是否可选港口
                 LinePorts: {
@@ -46,17 +47,15 @@ export default {
                     value2: "",
                     value3: "",
                 },
-                unit: "",
+
                 boxesData: [
                     {
-                        no: "1",
                         chain: "asjdsjdkk",
                     },
                     {
                         last: true,
                     },
                 ],
-
                 //form数据的终点，得放进store里
             },
         };
