@@ -146,7 +146,6 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <el-row :gutter="20"> </el-row>
             </el-form>
             <br />
             <el-button type="primary" @click="next">下一步</el-button>
