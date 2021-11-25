@@ -10,6 +10,8 @@ import CrossWiseTimeline from "@/components/apperance_order/CrossWiseTimeline";
 import setCargoInfo from "@/components/apperance_order/setCargoInfo.vue";
 import setBoxesInfo from "@/components/apperance_order/setBoxesInfo.vue";
 import setShipcompanyInfo from "@/components/apperance_order/setShipcompanyInfo.vue";
+
+import portlist from "../../../static/data/portlist.ts";
 export default {
     name: "OrderAdd",
     data() {
@@ -35,70 +37,11 @@ export default {
                 text: "",
                 qua: "",
                 allTime: "",
-                Line: {
-                    options: [
-                        {
-                            value: 0,
-                            label: "A1(大连-西雅图)",
-                        },
-                        {
-                            value: 1,
-                            label: "A2(大连-马尼拉)",
-                        },
-                    ],
-                    value: "",
-                },
+                Line: portlist.line,
                 isSelectLine: true, //控制是否可选港口
                 LinePorts: {
                     ports: [], //从下面中选取
-                    portlist: [
-                        [
-                            {
-                                value: 0,
-                                label: "大连",
-                            },
-                            {
-                                value: 1,
-                                label: "天津",
-                            },
-
-                            {
-                                value: 2,
-                                label: "釜山",
-                            },
-
-                            {
-                                value: 3,
-                                label: "横滨",
-                            },
-                            {
-                                value: 4,
-                                label: "西雅图",
-                            },
-                        ],
-                        [
-                            {
-                                value: 0,
-                                label: "大连",
-                            },
-                            {
-                                value: 1,
-                                label: "连云港",
-                            },
-                            {
-                                value: 2,
-                                label: "高雄",
-                            },
-                            {
-                                value: 3,
-                                label: "马尼拉",
-                            },
-                            {
-                                value: 4,
-                                label: "雅加达",
-                            },
-                        ],
-                    ],
+                    portlist: portlist.portlist,
                     value1: "",
                     value2: "",
                     value3: "",
@@ -128,19 +71,6 @@ export default {
         setShipcompanyInfo,
     },
     methods: {
-        handleClose() {
-            this.$refs.ruleForm.resetFields();
-            this.form = {
-                name: "",
-            };
-        },
-        handleSave() {
-            this.$refs.ruleForm.validate((valid) => {
-                if (valid) {
-                    this.addOrderVisible = false;
-                }
-            });
-        },
         changeForm(form) {
             this.$router.push(form);
             switch (form) {
@@ -200,7 +130,6 @@ export default {
             let boxesData = this.form.boxesData;
             let last = boxesData.pop();
             boxesData.push({
-                no: this.form.boxesData.length + 1,
                 chain: boxInfo,
             });
             boxesData.push(last);

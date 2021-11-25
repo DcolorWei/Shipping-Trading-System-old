@@ -3,7 +3,11 @@
         <el-container>
             <el-main>
                 <el-table :data="form.boxesData" style="width: 1000px" stripe border>
-                    <el-table-column label="序号" width="100" align="center" prop="no" />
+                    <el-table-column label="序号" width="100" align="center">
+                        <template slot-scope="props">
+                            <span>{{ props.$index }}</span>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="箱链" align="center" prop="id">
                         <template slot-scope="props">
                             <div v-if="props.row.last">
