@@ -197,13 +197,14 @@ export default {
             }
         },
         addBox(boxInfo) {
-            this.form.boxesData[this.form.boxesData.length - 1] = {
-                no: this.form.boxesData.length,
+            let boxesData = this.form.boxesData;
+            let last = boxesData.pop();
+            boxesData.push({
+                no: this.form.boxesData.length + 1,
                 chain: boxInfo,
-            };
-            this.form.boxesData[this.form.boxesData.length] = {
-                last: true,
-            };
+            });
+            boxesData.push(last);
+            this.form.boxesData = boxesData;
         },
     },
     setup() {

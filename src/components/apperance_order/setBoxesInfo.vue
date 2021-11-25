@@ -17,10 +17,7 @@
                     <el-table-column label="操作" width="200" align="center" prop="op">
                         <template slot-scope="props">
                             <div v-if="props.row.last">
-                                <el-button
-                                    size="mini"
-                                    type="warning"
-                                    @click="addBox(boxChain)"
+                                <el-button size="mini" type="warning" @click="addBox()"
                                     >新增</el-button
                                 >
                             </div>
@@ -56,8 +53,9 @@ export default {
         next() {
             this.$emit("changeForm", "setShipcompanyInfo");
         },
-        addBox(e) {
-            this.$emit("addBox",e);
+        addBox() {
+            this.$emit("addBox", this.boxChain);
+            this.boxChain = "";
         },
     },
     props: ["form"],
