@@ -100,7 +100,6 @@ export default {
             axios({
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer H52TXORMZM5BX237ELH23WOSFDP4LEX3N4GA"
                 },
                 mode:"cors",
                 method: "POST",

@@ -1,11 +1,17 @@
 <template>
     <div>
         <CrossWiseTimeline :shiproute="shipRoute"></CrossWiseTimeline>
-        <router-view :form="form" @changeForm="changeForm" @addBox="addBox"></router-view>
+        <router-view
+            :form="form"
+            @changeForm="changeForm"
+            @addBox="addBox"
+            @submit="submit"
+        ></router-view>
     </div>
 </template>
 
 <script>
+import axios from "axios";
 import CrossWiseTimeline from "@/components/apperance_order/CrossWiseTimeline";
 import setCargoInfo from "@/components/apperance_order/setCargoInfo.vue";
 import setBoxesInfo from "@/components/apperance_order/setBoxesInfo.vue";
@@ -34,6 +40,7 @@ export default {
             form: {
                 id: "",
                 name: "",
+                model: "",
                 type: "",
                 qua: "",
                 allTime: "",
@@ -64,6 +71,7 @@ export default {
         this.$router.push("setCargoInfo");
     },
     components: {
+        axios,
         CrossWiseTimeline,
         setCargoInfo,
         setBoxesInfo,
@@ -133,6 +141,35 @@ export default {
             });
             boxesData.push(last);
             this.form.boxesData = boxesData;
+        },
+
+        submit() {
+            let form = this.form;
+            form.boxesData.pop();
+            axios({
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+                url: "http://baidu.com",
+                data: {
+                    id: form.id, //货物id
+                    name: form.name, //货物名称
+                    qua: form.qua, //数量
+                    model: form.model,
+                    unit: form.unit, //单位
+                    boxQua: form.boxQua, //集装箱数量
+                    allTime: form.allTime, //周期
+                    Line: form.Line.value, //航线代码
+                    LinePorts: [
+                        //港口代码
+                        form.LinePorts.value1,
+                        form.LinePorts.value2,
+                        form.LinePorts.value3,
+                    ],
+                    boxesData: form.boxesData,
+                },
+            });
         },
     },
     setup() {
