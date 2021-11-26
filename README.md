@@ -42,6 +42,7 @@ npm run build
    ├─index.html
 
 #项目特点
-1.本地数据以及静态资源存放于/static下，数据通过/page文件夹中获取
-2.vue挂载结构为 App >> views >> page >> subPage(配置路由以使用) >> components >> SubComponent
+1.本地数据以及静态资源存放于/static下，store数据通过/page文件夹中获取
+2.vue组件挂载结构为 App >> views >> page >> subPage(配置路由以使用) >> components >> SubComponent
 3.通过$emit和props分别向父组件与子组件传输数据
+4.使用了vue-router与axios，并未加载VueX与其余工具
