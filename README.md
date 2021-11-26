@@ -17,6 +17,7 @@ npm run build
 ├─config
 ├─src
 │  ├─assets
+│  │  ├─data
 │  │  └─video
 │  ├─components
 │  │  ├─apperance
@@ -26,7 +27,6 @@ npm run build
 │  └─views
 └─static
     ├─api
-    ├─data
     └─img
 
 #生产环境目录
