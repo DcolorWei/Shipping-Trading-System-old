@@ -28,6 +28,9 @@ import setShipcompanyInfo from "../components/apperance_order/setShipcompanyInfo
 Vue.use(ElementUI)
 Vue.use(Router)
 
+//员工路由
+import staffShow from "../page/apperanceSubPage/StaffShow.vue"
+import shipcompanyShow from "../page/apperanceSubPage/shipcompanyShow.vue"
 
 export default new Router({
     routes: [
@@ -107,6 +110,16 @@ export default new Router({
                                     component: setShipcompanyInfo
                                 },
                             ]
+                        },
+                        {
+                            path: 'staffshow',
+                            name: 'staffShow',
+                            component: staffShow,
+                        },
+                        {
+                            path: 'shipcompanyshow',
+                            name: 'shipcompanyShow',
+                            component: shipcompanyShow
                         },
                     ]
                 },

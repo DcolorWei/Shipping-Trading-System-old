@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Home from "../page/Home.vue";
 import Apperance from "../page/Apperance.vue";
 import About from "../page/About.vue";

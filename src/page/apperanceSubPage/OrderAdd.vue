@@ -18,6 +18,7 @@ import setBoxesInfo from "@/components/apperance_order/setBoxesInfo.vue";
 import setShipcompanyInfo from "@/components/apperance_order/setShipcompanyInfo.vue";
 
 import portlist from "@/assets/data/portlist.ts";
+import shipcompany from "@/assets/data/shipcompanydata.ts"
 export default {
     name: "OrderAdd",
     data() {
@@ -45,7 +46,7 @@ export default {
                 qua: "",
                 allTime: "",
                 unit: "",
-                Line: portlist.line,
+                Line: portlist.line,//路线列表
                 isSelectLine: true, //控制是否可选港口
                 LinePorts: {
                     ports: [], //从下面中选取
@@ -54,11 +55,15 @@ export default {
                     value2: "",
                     value3: "",
                 },
-
+                shipcompany:shipcompany.company,//船公司列表
+                shipInfo: {
+                    ships: [], //从下面中选取
+                    shiplist: shipcompany.shiplist,
+                    value: "",
+                },
+                shipcompanyid:"",
+                shipid:"",
                 boxesData: [
-                    {
-                        chain: "asjdsjdkk",
-                    },
                     {
                         last: true,
                     },
@@ -76,6 +81,7 @@ export default {
         setCargoInfo,
         setBoxesInfo,
         setShipcompanyInfo,
+        shipcompany
     },
     methods: {
         changeForm(form) {

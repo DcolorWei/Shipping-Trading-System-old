@@ -19,7 +19,7 @@
                     <el-table-column
                         align="center"
                         v-for="(item, index) in tableItem"
-                        :key="item.index"
+                        :key="index"
                         :prop="item.prop"
                         :label="item.label"
                         :width="item.width"
@@ -38,7 +38,6 @@ export default {
     name: "OrderManage",
     data() {
         return {
-            a: "none",
             tabledata: tableData, //通过axios获取需要的订单数据
             shiproute: shipRoute, //通过axios获取需要的船舶航行数据
             tableItem: [

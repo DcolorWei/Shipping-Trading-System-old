@@ -8,23 +8,78 @@
                 style="margin: 0 10%"
             >
                 <el-row :gutter="20">
-                    <el-col :offset="8" :span="8">
-                        <el-form-item label="承运企业ID" prop="name" text-align="center">
-                            <el-input v-model="form.comid"></el-input>
+                    <el-col :offset="4" :span="8">
+                        <el-form-item label="承运企业" prop="name">
+                            <el-select
+                                v-model="form.shipcompany.value"
+                                @change="
+                                    (val) => {
+                                        form.shipInfo.ships =
+                                            form.shipInfo.shiplist[val]; //更新船列表
+                                        form.shipcompanyid =
+                                            form.shipcompany.options[
+                                                val
+                                            ].companyID;
+
+                                        form.shipInfo.value = '';
+                                        form.shipid = '';
+                                    }
+                                "
+                            >
+                                <el-option
+                                    v-for="item in form.shipcompany.options"
+                                    :key="item.companyID"
+                                    :label="item.companyName"
+                                    :value="item.value"
+                                >
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-form-item
+                            label="承运企业ID"
+                            prop="name"
+                            text-align="center"
+                        >
+                            <el-input
+                                v-model="form.shipcompanyid"
+                                :disabled="true"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row :gutter="20">
-                    <el-col :offset="8" :span="8">
-                        <el-form-item label="承运企业名称" prop="name">
-                            <el-input v-model="form.comname"></el-input>
+                    <el-col :offset="4" :span="8">
+                        <el-form-item label="承运船舶" prop="name">
+                            <el-select
+                                v-model="form.shipInfo.value"
+                                @change="
+                                    (val) => {
+                                        form.shipid = val;
+                                    }
+                                "
+                            >
+                                <el-option
+                                    v-for="item in form.shipInfo.ships"
+                                    :key="item.shipID"
+                                    :label="item.shipName"
+                                    :value="item.shipID"
+                                >
+                                </el-option>
+                            </el-select>
                         </el-form-item>
                     </el-col>
-                </el-row>
-                <el-row :gutter="20">
-                    <el-col :offset="8" :span="8">
-                        <el-form-item label="承运船舶识别号" prop="name">
-                            <el-input v-model="form.shipid"></el-input>
+                    <el-col :span="8">
+                        <el-form-item
+                            label="承运船舶识别号"
+                            prop="name"
+                            text-align="center"
+                        >
+                            <el-input
+                                v-model="form.shipid"
+                                :disabled="true"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
