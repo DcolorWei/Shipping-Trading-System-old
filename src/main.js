@@ -8,13 +8,18 @@ import 'element-ui/lib/theme-chalk/index.css';
 import VueRouter from 'vue-router';
 import router from './router';
 
+import Vuex from 'vuex'
+import store from './store'
+
 Vue.use(ElementUI);
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
