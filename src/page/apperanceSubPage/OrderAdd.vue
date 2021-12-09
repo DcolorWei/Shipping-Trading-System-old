@@ -4,7 +4,6 @@
         <router-view
             :form="form"
             @changeForm="changeForm"
-            @addBox="addBox"
             @submit="submit"
         ></router-view>
     </div>
@@ -138,15 +137,6 @@ export default {
                 default:
                     break;
             }
-        },
-        addBox(boxInfo) {
-            let boxesData = this.form.boxesData;
-            let last = boxesData.pop();
-            boxesData.push({
-                chain: boxInfo,
-            });
-            boxesData.push(last);
-            this.form.boxesData = boxesData;
         },
 
         submit() {

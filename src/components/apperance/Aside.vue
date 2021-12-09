@@ -69,8 +69,6 @@ export default {
     name: "Aside",
     methods: {
         sendOrderPage(page) {
-            alert(this.$store.state.test);
-            this.$store.commit("add")
             this.$emit("orderPagePush", page);
         },
     },

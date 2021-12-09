@@ -10,39 +10,39 @@
                 <el-row :gutter="20">
                     <el-col :span="8">
                         <el-form-item label="货物ID" prop="name">
-                            <el-input v-model="form.id"></el-input>
+                            <el-input v-model="$store.state.form.cargo.ID"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
                         <el-form-item label="货物名称" prop="name">
-                            <el-input v-model="form.name"></el-input>
+                            <el-input v-model="$store.state.form.cargo.name"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
                         <el-form-item label="货物型号" prop="name">
-                            <el-input v-model="form.model"></el-input>
+                            <el-input v-model="$store.state.form.cargo.model"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="5">
                         <el-form-item label="类型" prop="name">
-                            <el-input v-model="form.type"></el-input>
+                            <el-input v-model="$store.state.form.cargo.type"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="5">
                         <el-form-item label="子类型" prop="name">
-                            <el-input v-model="form.subtype"></el-input>
+                            <el-input v-model="$store.state.form.cargo.subtype"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="3">
                         <el-form-item label="数量" prop="name">
-                            <el-input v-model="form.qua"></el-input>
+                            <el-input v-model="$store.state.form.cargo.qua"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="2">
                         <el-form-item label="单位" prop="name">
-                            <el-input v-model="form.unit"></el-input>
+                            <el-input v-model="$store.state.form.cargo.unit"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="3">
