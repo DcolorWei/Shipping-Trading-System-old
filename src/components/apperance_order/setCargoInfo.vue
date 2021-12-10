@@ -2,7 +2,6 @@
     <el-container>
         <el-main>
             <el-form
-                :model="form"
                 ref="ruleForm"
                 label-position="left"
                 style="margin: 0 10%"
@@ -10,44 +9,58 @@
                 <el-row :gutter="20">
                     <el-col :span="8">
                         <el-form-item label="货物ID" prop="name">
-                            <el-input v-model="$store.state.form.cargo.ID"></el-input>
+                            <el-input
+                                v-model="cargo.ID"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
                         <el-form-item label="货物名称" prop="name">
-                            <el-input v-model="$store.state.form.cargo.name"></el-input>
+                            <el-input
+                                v-model="cargo.name"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
                         <el-form-item label="货物型号" prop="name">
-                            <el-input v-model="$store.state.form.cargo.model"></el-input>
+                            <el-input
+                                v-model="cargo.model"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="5">
                         <el-form-item label="类型" prop="name">
-                            <el-input v-model="$store.state.form.cargo.type"></el-input>
+                            <el-input v-model="cargo.type"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="5">
                         <el-form-item label="子类型" prop="name">
-                            <el-input v-model="$store.state.form.cargo.subtype"></el-input>
+                            <el-input
+                                v-model="cargo.subtype"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="3">
                         <el-form-item label="数量" prop="name">
-                            <el-input v-model="$store.state.form.cargo.qua"></el-input>
+                            <el-input
+                                v-model="cargo.qua"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="2">
                         <el-form-item label="单位" prop="name">
-                            <el-input v-model="$store.state.form.cargo.unit"></el-input>
+                            <el-input
+                                v-model="cargo.unit"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="3">
                         <el-form-item label="箱数" prop="name">
-                            <el-input v-model="form.boxQua"></el-input>
+                            <el-input
+                                v-model="cargo.boxQua"
+                            ></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -55,21 +68,16 @@
                     <el-col :span="5">
                         <el-form-item label="预定航线" prop="name">
                             <el-select
-                                v-model="form.Line.value"
+                                v-model="lineCode"
                                 placeholder="请选择航线"
                                 @change="
                                     (val) => {
-                                        form.isSelectLine = false;
-                                        form.LinePorts.ports =
-                                            form.LinePorts.portlist[val]; //更新航线
-                                        form.LinePorts.value1 = ''; //清空数据
-                                        form.LinePorts.value2 = '';
-                                        form.LinePorts.value3 = '';
+                                        changeLine(val);
                                     }
                                 "
                             >
                                 <el-option
-                                    v-for="item in form.Line.options"
+                                    v-for="item in portlist[lineCode]"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value"
@@ -83,7 +91,7 @@
                         <el-form-item label="装货港" prop="name">
                             <el-select
                                 v-model="form.LinePorts.value1"
-                                :disabled="form.isSelectLine"
+                                :disabled="alreadySelectLine"
                             >
                                 <el-option
                                     v-for="item in form.LinePorts.ports"
@@ -99,14 +107,16 @@
                         <el-form-item label="卸货港" prop="name">
                             <el-select
                                 v-model="form.LinePorts.value2"
-                                :disabled="form.isSelectLine"
+                                :disabled="alreadySelectLine"
                             >
                                 <el-option
                                     v-for="item in form.LinePorts.ports"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value"
-                                    :disabled="item.value <= form.LinePorts.value1"
+                                    :disabled="
+                                        item.value <= form.LinePorts.value1
+                                    "
                                 >
                                 </el-option>
                             </el-select>
@@ -116,7 +126,7 @@
                         <el-form-item label="目的港" prop="name">
                             <el-select
                                 v-model="form.LinePorts.value3"
-                                :disabled="form.isSelectLine"
+                                :disabled="alreadySelectLine"
                             >
                                 <el-option
                                     v-for="item in form.LinePorts.ports"
@@ -153,10 +163,53 @@
     </el-container>
 </template>
 <script>
+import portlist from "@/assets/data/portlist.ts";
+
 export default {
     name: "setCargoInfo",
     props: ["form"],
+    data() {
+        return {
+            alreadySelectLine: true,
+            portlist: portlist,
+        };
+    },
+    computed: {
+        cargo: {
+            get() {
+                let cargo=this.$store.state.form.cargo;
+                return cargo;
+            },
+            set(val) {
+                console.log(val);
+                this.$store.commit("changeCargoInfo", val);
+            },
+        },
+
+        line: {
+            lineCode: "", //*
+            lineName: "", //*
+            linePassPort: {
+                loading: "", //装货港代号*
+                unloading: "", //卸货港代号*
+                destination: "", //目的港代号*
+            },
+        },
+        company: {
+            companyCode: "", //企业ID#
+            companyName: "", //企业名称*
+            companyType: "", //企业类型#
+        },
+        boxesData: [
+            {
+                last: true,
+            },
+        ],
+    },
     methods: {
+        changeLine(val) {
+            this.alreadySelectLine = false;
+        },
         checkPorts: function () {
             if (this.form.LinePorts.value1 >= this.form.LinePorts.value2) {
                 this.form.LinePorts.value2 = "";
@@ -166,8 +219,12 @@ export default {
             }
         },
         next() {
+            console.log(this.$store.state.form)
             this.$emit("changeForm", "setBoxesInfo");
         },
+    },
+    components: {
+        portlist,
     },
 };
 </script>

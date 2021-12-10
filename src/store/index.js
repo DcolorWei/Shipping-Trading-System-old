@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex'
 Vue.use(Vuex)
 const store = new Vuex.Store({
+    strict: true,//严格模式肯定得开的
     state: {
         form: {//增加订单时，共用该状态
             //加*号表示要在前端数据库中选择
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
                 qua: "",//货物数量
                 unit: "",//数量计量单位
                 time: "",//海运周期
+                boxqua:"",//集装箱数量
             },
             line: {
                 lineCode: "",//*
@@ -24,7 +26,6 @@ const store = new Vuex.Store({
                     unloading: "",//卸货港代号*
                     destination: "",//目的港代号*
                 }
-
             },
             company: {
                 companyCode: "",//企业ID#
@@ -39,7 +40,10 @@ const store = new Vuex.Store({
         },
     },
     mutations: {
+        //更改货物信息（订单信息）
+        changeCargoInfo(state,newInfo){
 
+        },
         //订单-增删集装箱
         addBox(state, newBox) {
             let last = state.form.boxesData.pop();

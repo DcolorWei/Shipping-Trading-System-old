@@ -19,7 +19,7 @@ import ChangeInfo from "../page/apperanceSubPage/ChangeInfo.vue"
 import OrderManage from "../page/apperanceSubPage/OrderManage.vue"
 import OrderSearch from "../page/apperanceSubPage/OrderSearch.vue"
 import OrderAdd from "../page/apperanceSubPage/OrderAdd.vue"
-import ChangePasswd from "../page/apperanceSubPage/Changepasswd.vue"
+import ChangePasswd from "../page/apperanceSubPage/ChangePasswd.vue"
 
 //添加订单的表单路由
 import setCargoInfo from "../components/apperance_order/setCargoInfo.vue"
@@ -30,7 +30,7 @@ Vue.use(Router)
 
 //员工路由
 import staffShow from "../page/apperanceSubPage/StaffShow.vue"
-import shipcompanyShow from "../page/apperanceSubPage/shipcompanyShow.vue"
+import shipcompanyShow from "../page/apperanceSubPage/ShipcompanyShow.vue"
 
 export default new Router({
     routes: [

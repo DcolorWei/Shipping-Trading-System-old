@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import * as echarts from "Echarts";
+import * as echarts from "echarts";
 
 window.onload = function () {
     var myChart = echarts.init(document.getElementById("a"));
