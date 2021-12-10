@@ -1,6 +1,6 @@
 #区块链应用展示系统
 #Vue+ElementUI
-#Design by Dcolor
+#Design by Dcolor(dcolor@dlmu.edu.cn)
 
 #使用说明 
 1.安装环境
