@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex'
+
 Vue.use(Vuex)
+
+import methods from './methods.js'
+
 const store = new Vuex.Store({
     strict: true,//严格模式肯定得开的
     state: {
@@ -16,7 +20,7 @@ const store = new Vuex.Store({
                 qua: "",//货物数量
                 unit: "",//数量计量单位
                 time: "",//海运周期
-                boxqua:"",//集装箱数量
+                boxqua: "",//集装箱数量
             },
             line: {
                 lineCode: "",//*
@@ -41,9 +45,16 @@ const store = new Vuex.Store({
     },
     mutations: {
         //更改货物信息（订单信息）
-        changeCargoInfo(state,newInfo){
-
+        changeCargoInfo(state, newInfo) {
+            newInfo = methods.deepClone(newInfo)
+            Vue.set(state.form, "cargo", newInfo)
         },
+        //更改航线信息（话说长得一样？）
+        changeLineInfo(state, newInfo) {
+            newInfo = methods.deepClone(newInfo)
+            Vue.set(state.form, "line", newInfo)
+        },
+
         //订单-增删集装箱
         addBox(state, newBox) {
             let last = state.form.boxesData.pop();

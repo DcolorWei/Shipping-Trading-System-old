@@ -1,31 +1,21 @@
 <template>
     <el-container>
         <el-main>
-            <el-form
-                ref="ruleForm"
-                label-position="left"
-                style="margin: 0 10%"
-            >
+            <el-form ref="ruleForm" label-position="left" style="margin: 0 10%">
                 <el-row :gutter="20">
                     <el-col :span="8">
                         <el-form-item label="货物ID" prop="name">
-                            <el-input
-                                v-model="cargo.ID"
-                            ></el-input>
+                            <el-input v-model="cargo.ID"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
                         <el-form-item label="货物名称" prop="name">
-                            <el-input
-                                v-model="cargo.name"
-                            ></el-input>
+                            <el-input v-model="cargo.name"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="8">
                         <el-form-item label="货物型号" prop="name">
-                            <el-input
-                                v-model="cargo.model"
-                            ></el-input>
+                            <el-input v-model="cargo.model"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -37,30 +27,22 @@
                     </el-col>
                     <el-col :span="5">
                         <el-form-item label="子类型" prop="name">
-                            <el-input
-                                v-model="cargo.subtype"
-                            ></el-input>
+                            <el-input v-model="cargo.subtype"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="3">
                         <el-form-item label="数量" prop="name">
-                            <el-input
-                                v-model="cargo.qua"
-                            ></el-input>
+                            <el-input v-model="cargo.qua"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="2">
                         <el-form-item label="单位" prop="name">
-                            <el-input
-                                v-model="cargo.unit"
-                            ></el-input>
+                            <el-input v-model="cargo.unit"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="3">
                         <el-form-item label="箱数" prop="name">
-                            <el-input
-                                v-model="cargo.boxQua"
-                            ></el-input>
+                            <el-input v-model="cargo.boxQua"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -164,7 +146,7 @@
 </template>
 <script>
 import portlist from "@/assets/data/portlist.ts";
-
+import methods from "@/store/methods.js";
 export default {
     name: "setCargoInfo",
     props: ["form"],
@@ -172,39 +154,30 @@ export default {
         return {
             alreadySelectLine: true,
             portlist: portlist,
+            lineCode: 0,
+            
+            cargo: {},
+            line: {
+                linePassPort: {},
+            },
         };
     },
-    computed: {
+    created() {
+        this.cargo = methods.deepClone(this.$store.state.form.cargo);
+    },
+    watch: {
         cargo: {
-            get() {
-                let cargo=this.$store.state.form.cargo;
-                return cargo;
-            },
-            set(val) {
-                console.log(val);
+            handler(val) {
                 this.$store.commit("changeCargoInfo", val);
             },
+            deep: true,
         },
-
         line: {
-            lineCode: "", //*
-            lineName: "", //*
-            linePassPort: {
-                loading: "", //装货港代号*
-                unloading: "", //卸货港代号*
-                destination: "", //目的港代号*
+            handler(val) {
+                this.$store.commit("changeLineInfo", val);
             },
+            deep: true,
         },
-        company: {
-            companyCode: "", //企业ID#
-            companyName: "", //企业名称*
-            companyType: "", //企业类型#
-        },
-        boxesData: [
-            {
-                last: true,
-            },
-        ],
     },
     methods: {
         changeLine(val) {
@@ -219,7 +192,7 @@ export default {
             }
         },
         next() {
-            console.log(this.$store.state.form)
+            console.log(this.$store.state.form);
             this.$emit("changeForm", "setBoxesInfo");
         },
     },
