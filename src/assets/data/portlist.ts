@@ -1,6 +1,6 @@
 const line = [
     {
-        value: 0,
+        value: 1,
         label: "A1(大连-西雅图)",
         list: [
             {
@@ -28,7 +28,7 @@ const line = [
         ],
     },
     {
-        value: 1,
+        value: 2,
         label: "A2(大连-雅加达)",
         list: [
             {

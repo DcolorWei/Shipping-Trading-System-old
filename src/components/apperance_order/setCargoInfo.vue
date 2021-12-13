@@ -50,7 +50,7 @@
                     <el-col :span="5">
                         <el-form-item label="预定航线" prop="name">
                             <el-select
-                                v-model="lineCode"
+                                v-model="portCode"
                                 placeholder="请选择航线"
                                 @change="
                                     (val) => {
@@ -59,7 +59,7 @@
                                 "
                             >
                                 <el-option
-                                    v-for="item in portlist[lineCode]"
+                                    v-for="item in portlist"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value"
@@ -72,11 +72,14 @@
                     <el-col :span="3">
                         <el-form-item label="装货港" prop="name">
                             <el-select
-                                v-model="form.LinePorts.value1"
+                                v-model="line.linePassPort.loading"
                                 :disabled="alreadySelectLine"
+                                @change="changePort()"
                             >
                                 <el-option
-                                    v-for="item in form.LinePorts.ports"
+                                    v-for="item in portlist[
+                                        (portCode ? portCode : 1) - 1
+                                    ].list"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value"
@@ -88,16 +91,19 @@
                     <el-col :span="3">
                         <el-form-item label="卸货港" prop="name">
                             <el-select
-                                v-model="form.LinePorts.value2"
+                                v-model="line.linePassPort.unloading"
                                 :disabled="alreadySelectLine"
+                                @change="changePort()"
                             >
                                 <el-option
-                                    v-for="item in form.LinePorts.ports"
+                                    v-for="item in portlist[
+                                        (portCode ? portCode : 1) - 1
+                                    ].list"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value"
                                     :disabled="
-                                        item.value <= form.LinePorts.value1
+                                        item.value <= line.linePassPort.loading
                                     "
                                 >
                                 </el-option>
@@ -107,17 +113,21 @@
                     <el-col :span="3">
                         <el-form-item label="目的港" prop="name">
                             <el-select
-                                v-model="form.LinePorts.value3"
+                                v-model="line.linePassPort.destination"
                                 :disabled="alreadySelectLine"
+                                @change="changePort()"
                             >
                                 <el-option
-                                    v-for="item in form.LinePorts.ports"
+                                    v-for="item in portlist[
+                                        (portCode ? portCode : 1) - 1
+                                    ].list"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value"
                                     :disabled="
-                                        item.value <= form.LinePorts.value1 ||
-                                        item.value < form.LinePorts.value2
+                                        item.value <=
+                                            line.linePassPort.loading ||
+                                        item.value < line.linePassPort.unloading
                                     "
                                 >
                                 </el-option>
@@ -154,11 +164,16 @@ export default {
         return {
             alreadySelectLine: true,
             portlist: portlist,
-            lineCode: 0,
-            
+            portCode: "", //港口文件索引
+
             cargo: {},
             line: {
-                linePassPort: {},
+                lineName: "", //*
+                linePassPort: {
+                    loading: "", //装货港代号*
+                    unloading: "", //卸货港代号*
+                    destination: "", //目的港代号*
+                },
             },
         };
     },
@@ -181,18 +196,25 @@ export default {
     },
     methods: {
         changeLine(val) {
+            console.log(val);
             this.alreadySelectLine = false;
+            this.portCode = val;
         },
-        checkPorts: function () {
-            if (this.form.LinePorts.value1 >= this.form.LinePorts.value2) {
-                this.form.LinePorts.value2 = "";
+
+        changePort() {
+            let loading = this.line.linePassPort.loading;
+            let unloading = this.line.linePassPort.unloading;
+            let destination = this.line.linePassPort.destination;
+
+            if (destination < unloading) {
+                this.line.linePassPort.destination = unloading;
             }
-            if (this.form.LinePorts.value2 >= this.form.LinePorts.value3) {
-                this.form.LinePorts.value3 = "";
+            if (unloading < loading) {
+                this.line.linePassPort.destination = destination;
             }
         },
         next() {
-            console.log(this.$store.state.form);
+            console.log(this.line);
             this.$emit("changeForm", "setBoxesInfo");
         },
     },
