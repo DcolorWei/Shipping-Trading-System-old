@@ -16,13 +16,13 @@
                                     (val) => {
                                         form.shipInfo.ships =
                                             form.shipInfo.shiplist[val]; //更新船列表
-                                        form.shipcompanyid =
+                                        shipCompany.shipcompanyid =
                                             form.shipcompany.options[
                                                 val
                                             ].companyID;
 
                                         form.shipInfo.value = '';
-                                        form.shipid = '';
+                                        shipCompany.shipid = '';
                                     }
                                 "
                             >
@@ -43,7 +43,7 @@
                             text-align="center"
                         >
                             <el-input
-                                v-model="form.shipcompanyid"
+                                v-model="shipCompany.shipcompanyid"
                                 :disabled="true"
                             ></el-input>
                         </el-form-item>
@@ -56,7 +56,7 @@
                                 v-model="form.shipInfo.value"
                                 @change="
                                     (val) => {
-                                        form.shipid = val;
+                                        shipCompany.shipid = val;
                                     }
                                 "
                             >
@@ -77,7 +77,7 @@
                             text-align="center"
                         >
                             <el-input
-                                v-model="form.shipid"
+                                v-model="shipCompany.shipid"
                                 :disabled="true"
                             ></el-input>
                         </el-form-item>
@@ -93,10 +93,26 @@
 export default {
     name: "setShipcompanyInfo",
     props: ["form"],
+    data(){
+        return{
+            shipCompany:{
+                shipcompanyid:'',
+                shipid:'',
+            }
+        }
+    },
+    watch: {
+        shipCompany:{
+            handler(val){
+                console.log(val);
+            }
+        },
+    },
     methods: {
         pre() {
             this.$emit("changeForm", "setBoxesInfo");
         },
+
         submit() {
             this.$emit("submit");
         },

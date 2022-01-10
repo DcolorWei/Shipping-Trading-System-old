@@ -165,7 +165,6 @@ export default {
             alreadySelectLine: true,
             portlist: portlist,
             portCode: "", //港口文件索引
-
             cargo: {},
             line: {
                 lineName: "", //*

@@ -142,13 +142,8 @@ export default {
         submit() {
             let form = this.form;
             form.boxesData.pop();
-            axios({
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                method: "POST",
-                url: "http://baidu.com",
-                data: {
+            console.log(this.$store.state.form);
+            let datas={
                     id: form.id, //货物id
                     name: form.name, //货物名称
                     qua: form.qua, //数量
@@ -156,7 +151,7 @@ export default {
                     unit: form.unit, //单位
                     boxQua: form.boxQua, //集装箱数量
                     allTime: form.allTime, //周期
-                    Line: form.Line.value, //航线代码
+                    Line: form.Line, //航线代码
                     LinePorts: [
                         //港口代码
                         form.LinePorts.value1,
@@ -164,7 +159,14 @@ export default {
                         form.LinePorts.value3,
                     ],
                     boxesData: form.boxesData,
+                };
+            axios({
+                headers: {
+                    "Content-Type": "application/json",
                 },
+                method: "POST",
+                url: "http://baidu.com",
+                data: datas,
             });
         },
     },
