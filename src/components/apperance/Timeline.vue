@@ -4,7 +4,7 @@
             <transition-group>
                 <el-timeline-item
                     placement="top"
-                    v-for="(item, index) in timeLineTable"
+                    v-for="item in timeLineTable"
                     :key="item.Number"
                     :timestamp="item.Time"
                 >

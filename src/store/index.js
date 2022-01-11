@@ -19,16 +19,16 @@ const store = new Vuex.Store({
                 subtype: "",
                 qua: "",//货物数量
                 unit: "",//数量计量单位
-                time: "",//海运周期
                 boxqua: "",//集装箱数量
+                time:[],
             },
             line: {
                 lineCode: "",//*
                 lineName: "",//*
                 linePassPort: {
-                    loading: "",//装货港代号*
-                    unloading: "",//卸货港代号*
-                    destination: "",//目的港代号*
+                    loading: "",//装货港序号*
+                    unloading: "",//卸货港序号*
+                    destination: "",//目的港序号*
                 }
             },
             company: {
@@ -46,13 +46,13 @@ const store = new Vuex.Store({
     mutations: {
         //更改货物信息（订单信息）
         changeCargoInfo(state, newInfo) {
-            newInfo = methods.deepClone(newInfo)
-            Vue.set(state.form, "cargo", newInfo)
+            newInfo = methods.deepClone(newInfo);
+            Vue.set(state.form, "cargo", newInfo);
         },
         //更改航线信息（话说长得一样？）
         changeLineInfo(state, newInfo) {
-            newInfo = methods.deepClone(newInfo)
-            Vue.set(state.form, "line", newInfo)
+            newInfo = methods.deepClone(newInfo);
+            Vue.set(state.form, "line", newInfo);
         },
 
         //订单-增删集装箱

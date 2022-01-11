@@ -13,13 +13,13 @@ import Apperance from '../page/Apperance'
 import About from "../page/About"
 
 //仪表页面路由
-import InfoShow from '../page/apperanceSubPage/InfoShow'
-import AccountInfo from "../page/apperanceSubPage/AccountInfo.vue"
-import ChangeInfo from "../page/apperanceSubPage/ChangeInfo.vue"
-import OrderManage from "../page/apperanceSubPage/OrderManage.vue"
-import OrderSearch from "../page/apperanceSubPage/OrderSearch.vue"
-import OrderAdd from "../page/apperanceSubPage/OrderAdd.vue"
-import ChangePasswd from "../page/apperanceSubPage/ChangePasswd.vue"
+import InfoShow from '../page/apperance/InfoShow'
+import AccountInfo from "../page/apperance/account/AccountInfo.vue"
+import ChangeInfo from "../page/apperance/account/ChangeInfo.vue"
+import OrderManage from "../page/apperance/order/OrderManage.vue"
+import OrderSearch from "../page/apperance/order/OrderSearch.vue"
+import OrderAdd from "../page/apperance/order/OrderAdd.vue"
+import ChangePasswd from "../page/apperance/safety/ChangePasswd.vue"
 
 //添加订单的表单路由
 import setCargoInfo from "../components/apperance_order/setCargoInfo.vue"
@@ -29,8 +29,8 @@ Vue.use(ElementUI)
 Vue.use(Router)
 
 //员工路由
-import staffShow from "../page/apperanceSubPage/StaffShow.vue"
-import shipcompanyShow from "../page/apperanceSubPage/ShipcompanyShow.vue"
+import staffShow from "../page/apperance/staff/StaffShow.vue"
+import shipcompanyShow from "../page/apperance/company/ShipcompanyShow.vue"
 
 export default new Router({
     routes: [

@@ -1,6 +1,7 @@
 const line = [
     {
         value: 1,
+        code:'DL402',
         label: "A1(大连-西雅图)",
         list: [
             {
@@ -29,6 +30,7 @@ const line = [
     },
     {
         value: 2,
+        code:'DL404',
         label: "A2(大连-雅加达)",
         list: [
             {

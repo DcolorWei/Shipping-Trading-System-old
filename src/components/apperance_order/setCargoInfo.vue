@@ -42,7 +42,7 @@
                     </el-col>
                     <el-col :span="3">
                         <el-form-item label="箱数" prop="name">
-                            <el-input v-model="cargo.boxQua"></el-input>
+                            <el-input v-model="cargo.boxqua"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -50,7 +50,7 @@
                     <el-col :span="5">
                         <el-form-item label="预定航线" prop="name">
                             <el-select
-                                v-model="portCode"
+                                v-model="line.portCode"
                                 placeholder="请选择航线"
                                 @change="
                                     (val) => {
@@ -78,7 +78,7 @@
                             >
                                 <el-option
                                     v-for="item in portlist[
-                                        (portCode ? portCode : 1) - 1
+                                        (line.portCode ? line.portCode : 1) - 1
                                     ].list"
                                     :key="item.value"
                                     :label="item.label"
@@ -97,7 +97,7 @@
                             >
                                 <el-option
                                     v-for="item in portlist[
-                                        (portCode ? portCode : 1) - 1
+                                        (line.portCode ? line.portCode : 1) - 1
                                     ].list"
                                     :key="item.value"
                                     :label="item.label"
@@ -119,7 +119,7 @@
                             >
                                 <el-option
                                     v-for="item in portlist[
-                                        (portCode ? portCode : 1) - 1
+                                        (line.portCode ? line.portCode : 1) - 1
                                     ].list"
                                     :key="item.value"
                                     :label="item.label"
@@ -137,7 +137,7 @@
                     <el-col :span="4">
                         <el-form-item label="运输周期" prop="a">
                             <el-date-picker
-                                v-model="form.allTime"
+                                v-model="cargo.time"
                                 type="datetimerange"
                                 range-separator="-"
                                 start-placeholder="预定发货时间"
@@ -164,9 +164,12 @@ export default {
         return {
             alreadySelectLine: true,
             portlist: portlist,
-            portCode: "", //港口文件索引
-            cargo: {},
+            cargo: {
+                time:""
+            },
             line: {
+                portCode: "", //港口文件索引
+                lineCode: "",
                 lineName: "", //*
                 linePassPort: {
                     loading: "", //装货港代号*
@@ -178,6 +181,8 @@ export default {
     },
     created() {
         this.cargo = methods.deepClone(this.$store.state.form.cargo);
+        this.line = methods.deepClone(this.$store.state.form.line);
+        if (this.line.portCode != undefined) this.alreadySelectLine = false; //港口列表可选
     },
     watch: {
         cargo: {
@@ -195,9 +200,9 @@ export default {
     },
     methods: {
         changeLine(val) {
-            console.log(val);
             this.alreadySelectLine = false;
-            this.portCode = val;
+            this.line.portCode = val;
+            this.line.lineCode = portlist[this.line.portCode - 1].code;
         },
 
         changePort() {
@@ -211,9 +216,9 @@ export default {
             if (unloading < loading) {
                 this.line.linePassPort.destination = destination;
             }
+            console.log(this.line);
         },
         next() {
-            console.log(this.line);
             this.$emit("changeForm", "setBoxesInfo");
         },
     },

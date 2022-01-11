@@ -11,10 +11,10 @@
 </template>
 <script>
 import Aside from "../components/apperance/Aside.vue";
-import InfoShow from "./apperanceSubPage/InfoShow.vue";
-import OrderManage from "./apperanceSubPage/OrderManage.vue";
-import OrderSearch from "./apperanceSubPage/OrderSearch.vue";
-import OrderAdd from "./apperanceSubPage/OrderAdd.vue";
+import InfoShow from "./apperance/InfoShow.vue";
+import OrderManage from "./apperance/order/OrderManage.vue";
+import OrderSearch from "./apperance/order/OrderSearch.vue";
+import OrderAdd from "./apperance/order/OrderAdd.vue";
 export default {
     name: "Apperance",
     data() {
