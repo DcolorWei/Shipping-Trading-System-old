@@ -20,7 +20,7 @@ const store = new Vuex.Store({
                 qua: "",//货物数量
                 unit: "",//数量计量单位
                 boxqua: "",//集装箱数量
-                time:[],
+                time: [],
             },
             line: {
                 lineCode: "",//*
@@ -32,10 +32,18 @@ const store = new Vuex.Store({
                 }
             },
             company: {
-                companyCode: "",//企业ID#
-                companyName: "",//企业名称*
-                companyType: "",//企业类型#
+                shipCompany: {
+                    shipCompanyName: "",
+                    shipcompanyId: "",
+                    shipName: "",
+                    shipId: "",
+                },
             },
+            staff: [
+                {
+                    last: true,
+                },
+            ],
             boxesData: [
                 {
                     last: true,
@@ -64,6 +72,22 @@ const store = new Vuex.Store({
         deleteBox(state, index) {
             state.form.boxesData.splice(index, 1);
         },
+        //订单-增删人员
+        addJob(state, newBox) {
+            let last = state.form.staff.pop();
+            state.form.staff.push(newBox);
+            state.form.staff.push(last);
+        },
+        deleteJob(state, index) {
+            state.form.boxesData.splice(index, 1);
+        },
+        //订单-修改船公司
+        changeCompanyInfo(state, newInfo) {
+            console.log(newInfo)
+            newInfo = methods.deepClone(newInfo);
+            Vue.set(state.form.company, "shipCompany", newInfo);
+        },
+
     }
 });
 

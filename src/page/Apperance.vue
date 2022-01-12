@@ -1,11 +1,14 @@
 <template>
     <el-container>
         <el-aside width="168px" style="overflow: hidden">
-            <Aside :allAblePage="allAblePage" @orderPagePush="changeOrderPage"></Aside>
+            <Aside
+                :allAblePage="allAblePage"
+                @orderPagePush="changeOrderPage"
+            ></Aside>
         </el-aside>
         <!--路由展示区(居中)-->
         <div style="margin: 0 auto">
-            <router-view></router-view>
+            <transition mode="out-in"><router-view></router-view></transition>
         </div>
     </el-container>
 </template>
@@ -40,4 +43,23 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-enter {
+    opacity: 0;
+}
+.v-enter-active {
+    transition: 0.25s;
+}
+.v-enter-to {
+    opacity: 1;
+}
+.v-leave {
+    opacity: 1;
+}
+.v-leave-to {
+    opacity: 0;
+}
+.v-leave-active {
+    transition: 0.25s;
+}
+</style>

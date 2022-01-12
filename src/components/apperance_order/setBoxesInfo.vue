@@ -116,7 +116,7 @@ export default {
             this.$emit("changeForm", "setCargoInfo");
         },
         next() {
-            this.$emit("changeForm", "setShipcompanyInfo");
+            this.$emit("changeForm", "setRelatedStaff");
         },
         addBox() {
             this.$store.commit("addBox", {

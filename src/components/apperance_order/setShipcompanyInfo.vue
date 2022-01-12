@@ -11,18 +11,18 @@
                     <el-col :offset="4" :span="8">
                         <el-form-item label="承运企业" prop="name">
                             <el-select
-                                v-model="form.shipcompany.value"
+                                v-model="shipCompany.shipCompanyName"
                                 @change="
                                     (val) => {
                                         form.shipInfo.ships =
                                             form.shipInfo.shiplist[val]; //更新船列表
-                                        shipCompany.shipcompanyid =
+                                        shipCompany.shipcompanyId =
                                             form.shipcompany.options[
                                                 val
                                             ].companyID;
 
-                                        form.shipInfo.value = '';
-                                        shipCompany.shipid = '';
+                                        shipCompany.shipName = '';
+                                        shipCompany.shipId = '';
                                     }
                                 "
                             >
@@ -43,7 +43,7 @@
                             text-align="center"
                         >
                             <el-input
-                                v-model="shipCompany.shipcompanyid"
+                                v-model="shipCompany.shipcompanyId"
                                 :disabled="true"
                             ></el-input>
                         </el-form-item>
@@ -53,10 +53,10 @@
                     <el-col :offset="4" :span="8">
                         <el-form-item label="承运船舶" prop="name">
                             <el-select
-                                v-model="form.shipInfo.value"
+                                v-model="shipCompany.shipName"
                                 @change="
                                     (val) => {
-                                        shipCompany.shipid = val;
+                                        shipCompany.shipId = val;
                                     }
                                 "
                             >
@@ -77,7 +77,7 @@
                             text-align="center"
                         >
                             <el-input
-                                v-model="shipCompany.shipid"
+                                v-model="shipCompany.shipId"
                                 :disabled="true"
                             ></el-input>
                         </el-form-item>
@@ -90,27 +90,41 @@
     </div>
 </template>
 <script>
+import shipcompany from "@/assets/data/shipcompanydata.ts";
+import methods from "@/store/methods.js";
 export default {
     name: "setShipcompanyInfo",
     props: ["form"],
-    data(){
-        return{
-            shipCompany:{
-                shipcompanyid:'',
-                shipid:'',
-            }
-        }
+    data() {
+        return {
+            shipInfo: {
+                    ships: [], //从下面中选取
+                    shiplist: shipcompany.shiplist,
+                    value: "",
+                },
+            shipCompany: {
+                shipCompanyName: "",
+                shipcompanyId: "",
+                shipName: "",
+                shipId: "",
+            },
+            
+        };
+    },
+    created() {
+        this.shipCompany = methods.deepClone(this.$store.state.form.company.shipCompany);
     },
     watch: {
-        shipCompany:{
-            handler(val){
-                console.log(val);
-            }
+        shipCompany: {
+            handler(val) {
+                this.$store.commit("changeCompanyInfo", val);
+            },
+            deep: true,
         },
     },
     methods: {
         pre() {
-            this.$emit("changeForm", "setBoxesInfo");
+            this.$emit("changeForm", "setRelatedStaff");
         },
 
         submit() {

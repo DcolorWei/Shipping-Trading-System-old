@@ -126,7 +126,6 @@ export default {
 <style scoped>
 .my_timeline_prev,
 .my_timeline_next {
-    float: left;
     display: inline-block;
     background-color: #fff;
     cursor: pointer;

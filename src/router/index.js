@@ -24,6 +24,7 @@ import ChangePasswd from "../page/apperance/safety/ChangePasswd.vue"
 //添加订单的表单路由
 import setCargoInfo from "../components/apperance_order/setCargoInfo.vue"
 import setBoxesInfo from "../components/apperance_order/setBoxesInfo.vue"
+import setRelatedStaff from "../components/apperance_order/setRelatedStaff.vue"
 import setShipcompanyInfo from "../components/apperance_order/setShipcompanyInfo.vue"
 Vue.use(ElementUI)
 Vue.use(Router)
@@ -103,6 +104,11 @@ export default new Router({
                                     path: 'setboxesinfo',
                                     name: 'setBoxesInfo',
                                     component: setBoxesInfo
+                                },
+                                {
+                                    path: 'setrelatedstaff',
+                                    name: 'setrelatedstaff',
+                                    component: setRelatedStaff
                                 },
                                 {
                                     path: 'setShipcompanyinfo',
