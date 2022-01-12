@@ -1,17 +1,20 @@
-#区块链应用展示系统
-#Vue+ElementUI
-#Design by Dcolor(dcolor@dlmu.edu.cn)
-
+#区块链应用展示系统  
+#Vue+ElementUI  
+#Design by Dcolor(dcolor@dlmu.edu.cn)  
+  
+#演示地址  
+https://blockshow-4gzbkg1a9f1d207c-1256429839.tcloudbaseapp.com/  
+  
 #使用说明 
-1.安装环境
-npm install
-
-2.运行本地服务器(localhost:8080)
-npm run dev
-
-3.建立生产环境(/dist)
-npm run build
-
+1.安装环境  
+npm install  
+  
+2.运行本地服务器(localhost:8080)  
+npm run dev  
+  
+3.建立生产环境(/dist)  
+npm run build  
+  
 #开发环境目录
 ─ build  
 ├─config  
