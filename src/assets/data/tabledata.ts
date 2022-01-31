@@ -2,7 +2,7 @@ const tabledata = [
     {
         orderID: "TD-07-K271827391",
         cargoName: "石油",
-        cargoType: "液化货物",
+        cargoType: "液化货物",//子类别
         shipLine: "大连-西雅图",
         shipRoute: [
             {

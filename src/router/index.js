@@ -33,6 +33,12 @@ Vue.use(Router)
 import staffShow from "../page/apperance/staff/StaffShow.vue"
 import shipcompanyShow from "../page/apperance/company/ShipcompanyShow.vue"
 
+
+//任务路由
+import matterManage from "../page/apperance/matter/MatterManage.vue"
+import matterHandler from "../page/apperance/matter/MatterHanlder.vue"
+
+
 export default new Router({
     routes: [
         {
@@ -56,10 +62,16 @@ export default new Router({
                     component: Home
                 },
                 {
+                    
                     path: 'apperance',
                     name: 'Apperance',
                     component: Apperance,
                     children: [
+                        {
+                            path: 'matterhandler',
+                            name: 'matterHandler',
+                            component: matterHandler
+                        },
                         {
                             path: 'infoshow',
                             name: 'InfoShow',
@@ -126,6 +138,11 @@ export default new Router({
                             path: 'shipcompanyshow',
                             name: 'shipcompanyShow',
                             component: shipcompanyShow
+                        },
+                        {
+                            path: 'mattermanage',
+                            name: 'matterManage',
+                            component: matterManage
                         },
                     ]
                 },

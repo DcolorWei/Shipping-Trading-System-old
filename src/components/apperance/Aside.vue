@@ -59,6 +59,14 @@
                 <el-menu-item index="5-2"
                     ><span class="subtitle">退出登录</span></el-menu-item
                 >
+            </el-submenu><el-submenu index="6">
+                <template slot="title">
+                    <span><strong>任务</strong></span>
+                </template>
+
+                <el-menu-item index="6-1" @click="sendOrderPage('MatterManage')"
+                    ><span class="subtitle">任务列表</span></el-menu-item
+                >
             </el-submenu>
         </el-menu>
     </div>

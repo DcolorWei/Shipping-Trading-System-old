@@ -2,6 +2,9 @@ const line = [
     {
         value: 1,
         code:'DL402',
+        ship:{
+
+        },
         label: "A1(大连-西雅图)",
         list: [
             {

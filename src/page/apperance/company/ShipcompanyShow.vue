@@ -43,7 +43,7 @@ export default {
     name: "shipcompanyShow",
     data() {
         return {
-            tabledata: shipcompanyData.company.options, //通过axios获取需要的员工数据
+            tabledata: shipcompanyData.company.options, //通过axios获取需要的公司数据
             tableItem: [
                 {
                     prop: "companyID",

@@ -8,6 +8,9 @@ import methods from './methods.js'
 const store = new Vuex.Store({
     strict: true,//严格模式肯定得开的
     state: {
+        view:{//切换页面
+
+        },
         form: {//增加订单时，共用该状态
             //加*号表示要在前端数据库中选择
             //加#表示不需要填写，系统自动获取
