@@ -93,97 +93,11 @@ export default {
     methods: {
         changeForm(form) {
             this.$router.push(form);
-            switch (form) {
-                case "setCargoInfo":
-                    this.shipRoute = [
-                        {
-                            site: "",
-                            type: "porting",
-                        },
-                        {
-                            site: "",
-                            type: "end",
-                        },
-                        {
-                            site: "",
-                            type: "end",
-                        },
-                        {
-                            site: "",
-                            type: "end",
-                        },
-                    ];
-                    break;
-                case "setBoxesInfo":
-                    this.shipRoute = [
-                        {
-                            site: "",
-                            type: "passed",
-                        },
-                        {
-                            site: "",
-                            type: "porting",
-                        },
-                        {
-                            site: "",
-                            type: "end",
-                        },
-                        {
-                            site: "",
-                            type: "end",
-                        },
-                    ];
-                    break;
-                    case "setRelatedStaff":
-                    this.shipRoute = [
-                        {
-                            site: "",
-                            type: "passed",
-                        },
-                        {
-                            site: "",
-                            type: "passed",
-                        },
-                        {
-                            site: "",
-                            type: "porting",
-                        },
-                        {
-                            site: "",
-                            type: "end",
-                        },
-                    ];
-                    break;
-                case "setShipcompanyInfo":
-                    this.shipRoute = [
-                        {
-                            site: "",
-                            type: "passed",
-                        },
-                        {
-                            site: "",
-                            type: "passed",
-                        },
-                        {
-                            site: "",
-                            type: "passed",
-                        },
-                        {
-                            site: "",
-                            type: "porting",
-                        },
-                    ];
-                    break;
-                default:
-                    break;
-            }
         },
 
         submit() {
             let form = this.form;
             form.boxesData.pop();
-            console.log(this.$store.state.form);
-            console.log(this.form.allTime);
             let datas = {
                 id: form.id, //货物id
                 name: form.name, //货物名称

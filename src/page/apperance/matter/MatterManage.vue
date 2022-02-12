@@ -12,7 +12,6 @@
             :width="item.width"
           ></el-table-column>
           <el-table-column
-            :prop="item"
             width="150"
             label="操作"
             align="center"

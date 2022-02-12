@@ -36,7 +36,9 @@ import shipcompanyShow from "../page/apperance/company/ShipcompanyShow.vue"
 
 //任务路由
 import matterManage from "../page/apperance/matter/MatterManage.vue"
-import matterHandler from "../page/apperance/matter/MatterHanlder.vue"
+import matterHandler from "../page/apperance/matter/matterHandler/MatterHandler.vue"
+import fillTable from "../page/apperance/matter/matterHandler/FillTable.vue"
+import inquiryList from "../page/apperance/matter/matterHandler/InquiryList.vue"
 
 
 export default new Router({
@@ -62,16 +64,11 @@ export default new Router({
                     component: Home
                 },
                 {
-                    
+
                     path: 'apperance',
                     name: 'Apperance',
                     component: Apperance,
                     children: [
-                        {
-                            path: 'matterhandler',
-                            name: 'matterHandler',
-                            component: matterHandler
-                        },
                         {
                             path: 'infoshow',
                             name: 'InfoShow',
@@ -143,6 +140,11 @@ export default new Router({
                             path: 'mattermanage',
                             name: 'matterManage',
                             component: matterManage
+                        },
+                        {
+                            path: 'matterhandler',
+                            name: 'matterHandler',
+                            component: matterHandler,
                         },
                     ]
                 },

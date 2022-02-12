@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "axios": "^0.24.0",
     "echarts": "^5.2.1",
     "vue": "^2.5.2",
@@ -27,7 +28,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.0",
+    "css-loader": "^0.28.11",
     "element-ui": "^2.15.6",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
