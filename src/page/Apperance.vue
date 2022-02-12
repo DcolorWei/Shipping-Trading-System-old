@@ -8,7 +8,11 @@
         </el-aside>
         <!--路由展示区(居中)-->
         <div style="margin: 0 auto">
-            <transition mode="out-in"><router-view></router-view></transition>
+            <transition mode="out-in">
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+            </transition>
         </div>
     </el-container>
 </template>

@@ -4,10 +4,11 @@
             <transition-group>
                 <el-timeline-item
                     placement="top"
-                    v-for="item in timeLineTable"
-                    :key="item.Number"
+                    v-for="(item, index) in timeLineTable"
+                    :key="item.Number" 
                     :timestamp="item.Time"
                 >
+                <!-- item.Number -->
                     <el-card class="card">
                         <p>
                             <strong>Number: {{ item.Number }}</strong>
