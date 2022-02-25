@@ -31,7 +31,7 @@
                             shadow="hover"
                             style="border-radius: 10px; height: 400px"
                         >
-                            <EchartsTable />
+                            <EchartsTable :blockdata="timeLineTable"></EchartsTable>
                         </el-card>
                     </el-col>
                     <el-col :span="11">

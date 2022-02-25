@@ -20,6 +20,7 @@ import OrderManage from "../page/apperance/order/OrderManage.vue"
 import OrderSearch from "../page/apperance/order/OrderSearch.vue"
 import OrderAdd from "../page/apperance/order/OrderAdd.vue"
 import ChangePasswd from "../page/apperance/safety/ChangePasswd.vue"
+import OrderMap from "../page/apperance/order/OrderMap.vue"
 
 //添加订单的表单路由
 import setCargoInfo from "../components/apperance_order/setCargoInfo.vue"
@@ -93,6 +94,11 @@ export default new Router({
                             path: 'ordermanage',
                             name: 'OrderManage',
                             component: OrderManage
+                        },
+                        {
+                            path: 'ordermap',
+                            name: 'OrderMap',
+                            component: OrderMap
                         },
                         {
                             path: 'ordersearch',

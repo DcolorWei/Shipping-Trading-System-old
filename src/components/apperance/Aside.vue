@@ -27,6 +27,11 @@
                     @click="sendOrderPage('OrderAdd/setCargoInfo')"
                     ><span class="subtitle">新建订单</span></el-menu-item
                 >
+                <el-menu-item
+                    index="2-4"
+                    @click="sendOrderPage('OrderMap')"
+                    ><span class="subtitle">订单地图</span></el-menu-item
+                >
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">

@@ -11,11 +11,12 @@
 </template>
 <script>
 import portlist from "@/assets/data/portlist.ts";
-import shipcompanyData from "@/assets/data/shipcompanydata.ts";
 import methods from "@/store/methods.js";
 import fillTable from "@/page/apperance/matter/matterHandler/FillTable.vue";
 import inquiryList from "@/page/apperance/matter/matterHandler/InquiryList.vue";
 import transGoods from "@/page/apperance/matter/matterHandler/map.vue";
+
+
 
 export default {
   name: "matterhandler",
@@ -30,9 +31,9 @@ export default {
       console.log(this.page);
     },
   },
+
   components: {
     portlist,
-    shipcompanyData,
     fillTable,
     inquiryList,
     transGoods,

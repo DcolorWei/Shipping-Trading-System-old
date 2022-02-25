@@ -59,7 +59,7 @@
     </el-card>
 
     <el-card style="margin-top: 20px">
-      <el-table :data="tabledata" style="width: 100%" stripe>
+      <el-table :data="schedule" style="width: 100%" stripe>
         <el-table-column width="55" :prop="item">
           <template slot-scope="prop">
             <el-row>
@@ -258,15 +258,14 @@
 </template>
 
 <script>
-import shipcompanyData from "@/assets/data/shipcompanydata.ts";
 export default {
   name: "inquiryList",
   data() {
     return {
       selectShip: -1,
       selectLand: -1,
-      tabledata: shipcompanyData.company.shippingSchedule,
-      landdata: shipcompanyData.company.land,
+      schedule: [],
+      landdata: [],
       tableItem: [
         {
           prop: "shipCompany",
@@ -299,6 +298,15 @@ export default {
       ],
       matter: this.$route.params.info,
     };
+  },
+  mounted() {
+    fetch("http://127.0.0.1:8081/getschedule")
+      .then((response) => response.json())
+      .then((data) => (this.schedule = data));
+
+    fetch("http://127.0.0.1:8081/landschedule")
+      .then((response) => response.json())
+      .then((data) => (this.landdata = data));
   },
   methods: {
     next() {

@@ -11,11 +11,7 @@
             :label="item.label"
             :width="item.width"
           ></el-table-column>
-          <el-table-column
-            width="150"
-            label="操作"
-            align="center"
-          >
+          <el-table-column width="150" label="操作" align="center">
             <template slot-scope="prop">
               <el-row>
                 <el-button
@@ -76,7 +72,7 @@ export default {
       this.$router.push({
         name: "matterHandler",
         params: {
-          info: item
+          info: item,
         },
       });
     },
