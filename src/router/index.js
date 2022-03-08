@@ -42,6 +42,8 @@ import fillTable from "../page/apperance/matter/matterHandler/FillTable.vue"
 import inquiryList from "../page/apperance/matter/matterHandler/InquiryList.vue"
 
 
+import Offer from "../page/Offer.vue"
+
 export default new Router({
     routes: [
         {
@@ -59,6 +61,11 @@ export default new Router({
             name: 'Subject',
             component: Subject,
             children: [
+                {
+                    path:'offer',
+                    name:'Offer',
+                    component:Offer
+                },
                 {
                     path: 'home',
                     name: 'Home',

@@ -1,10 +1,10 @@
 <template>
   <el-card>
-     <el-card class="hoverFlame">
+    <el-card class="hoverFlame" v-if="shipRoute.length > 0">
       <CrossWiseTimeline :shiproute="shipRoute"></CrossWiseTimeline>
     </el-card>
+    <button class="start-btn">a</button>
     <div id="container" style="width: 1200px; height: 600px"></div>
-   
   </el-card>
 </template>
 
@@ -18,93 +18,144 @@ export default {
   name: "OrderMap",
   data() {
     return {
-      shipRoute: [
-        {
-          site: "大连",
-          type: "porting",
-        },
-        {
-          site: "青岛",
-          type: "end",
-        },
-        {
-          site: "连云港",
-          type: "end",
-        },
-        {
-          site: "马尼拉",
-          type: "end",
-        },
-      ],
+      shipRoute: [],
     };
+  },
+  methods: {
+    clickHandler: function (e) {
+      alert(
+        "您在[ " +
+          e.lnglat.getLng() +
+          "," +
+          e.lnglat.getLat() +
+          " ]的位置点击了地图！"
+      );
+    },
+    change1: function (shipRoute) {
+      this.$data.shipRoute = shipRoute;
+    },
   },
   mounted() {
     AMapLoader.load({
       key: "66097d2ef459ca854fe65e014f1cd655", // 申请好的Web端开发者Key，首次调用 load 时必填
       version: "2.0", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
       plugins: [], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+      Loca: {
+        // 是否加载 Loca， 缺省不加载
+        version: "2.0", // Loca 版本，缺省 1.3.2
+      },
     }).then((AMap) => {
-      let map = new AMap.Map("container", {
-        zoom: 6, //设置地图显示的缩放级别
-        center: [130.091213, 36.861378], //设置地图中心点坐标
-        layers: [], //设置图层,可设置成包含一个或多个图层的数组
-        mapStyle: "amap://styles/whitesmoke", //设置地图的显示样式
-        viewMode: "2D", //设置地图模式
-        lang: "zh_cn", //设置地图语言类型;
+      var map = new AMap.Map("container", {
+        terrain: true,
+        viewMode: "2D",
+        zoom: 13,
+        center: [102.620455, 30.973672],
+        pitch: 45,
+        rotation: -90,
+        showLabel: true,
+        mapStyle: "amap://styles/509934ebf66e54cbfe10ccae0056c462",
+        showBuildingBlock: false,
+        dragEnable: false,
       });
 
-      var clickHandler = function (e) {
-        alert(
-          "您在[ " +
-            e.lnglat.getLng() +
-            "," +
-            e.lnglat.getLat() +
-            " ]的位置点击了地图！"
-        );
-      };
+      var loca = new Loca.Container({
+        map,
+      });
+      var path = [
+        [102.620455, 30.973672],
+        [102.620983, 30.973509],
 
-      mattersList.forEach((element) => {
-        let path = new Array();
-        element.siteList.forEach((element) => {
-          path.push(element.site);
-          if (element.type) {
-            //带有名称，为特殊位置
-            map.add(methods.drawpoint(element.site));
+        [102.630044, 30.968308],
+        [102.630641, 30.968114],
+        [102.631158, 30.968034],
+
+        [102.634166, 30.964221],
+        [102.634372, 30.964006],
+        [102.635035, 30.963904],
+        [102.636576, 30.963516],
+        [102.637393, 30.96333],
+        [102.638094, 30.963074],
+        [102.638532, 30.962883],
+        [102.638924, 30.962616],
+        [102.639141, 30.962542],
+        [102.639412, 30.962503],
+        [102.63967, 30.962478],
+        [102.639925, 30.962482],
+        [102.640288, 30.96258],
+        [102.640659, 30.962719],
+
+        [102.831209, 30.993469],
+        [102.832315, 30.99383],
+        [102.834562, 30.994623],
+      ];
+
+      // 轨迹
+      var marker = new AMap.Marker({
+        position: [102.834562, 30.994623],
+        content: '<div class="amap-ani"></div>',
+        anchor: "bottom-center",
+        map: map,
+      });
+      var polyline = new AMap.Polyline({
+        path: [
+          [102.620456, 30.973672],
+          [102.620456, 30.973672],
+        ],
+        isOutline: false,
+        strokeColor: "#00E98F",
+        strokeOpacity: 1,
+        strokeWeight: 16,
+        strokeStyle: "solid",
+        lineJoin: "round",
+        lineCap: "round",
+        zIndex: 500,
+        map: map,
+      });
+      var finished = false;
+      function run() {
+        if (!finished) {
+          var center = map.getCenter().toArray();
+          var lastPath = polyline.getPath();
+          lastPath.push(center);
+          if (lastPath.length === 1) {
+            lastPath.push(center);
           }
+          polyline.setPath(lastPath);
+          marker.setPosition(center);
+        }
+        requestAnimationFrame(run);
+      }
+
+      run();
+
+      loca.animate.start();
+      document
+        .querySelector(".start-btn")
+        .addEventListener("click", function () {
+          finished = false;
+          polyline.setPath([
+            [102.620456, 30.973672],
+            [102.620456, 30.973672],
+          ]);
+          loca.viewControl.addTrackAnimate(
+            {
+              path: path, // 镜头轨迹，二维数组，支持海拔
+              duration: 12000, // 时长
+              timing: [
+                [0, 0.3],
+                [1, 0.7],
+              ], // 速率控制器
+              rotationSpeed: 0, // 每秒旋转多少度
+            },
+            function () {
+              finished = true;
+            }
+          );
         });
-        map.add(methods.drawline(path));
-      });
 
-      var circleMarker = {
-        amapobj: methods.drawpoint([121.603077, 38.912069]),
-      };
+      loca.animate.start();
+      mattersList.forEach((element) => {});
 
-      circleMarker.amapobj.on("click", () => {
-        console.log(circleMarker.pointdata);
-      });
-
-      map.add(circleMarker.amapobj);
-      // circleMarker.setMap(map);
-
-      // 将折线添加至地图实例
-      map.add(
-        methods.drawline([
-          [121.603077, 38.912069],
-          [121.601567, 38.926337],
-          [121.616993, 38.926481],
-          [121.636986, 38.933106],
-          [121.639516, 38.933442],
-          [121.647229, 38.931042],
-          [121.648525, 38.931042],
-          [121.649635, 38.930514],
-          [121.653276, 38.932434],
-          [121.657349, 38.93109],
-          [121.658089, 38.932242],
-          [121.653584, 38.933538],
-          [121.656176, 38.938625],
-          [125.159926, 38.7259],
-        ])
-      );
       // 绑定事件
       // map.on("click", clickHandler);
 
@@ -123,10 +174,10 @@ export default {
 </script>
 
 <style>
-.hoverFlame{
-  position:fixed;
-  margin-left:3%;
-  margin-top:30%;
+.hoverFlame {
+  position: fixed;
+  margin-left: 3%;
+  margin-top: 30%;
   z-index: 6;
 }
 </style>
