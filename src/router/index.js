@@ -57,20 +57,21 @@ export default new Router({
             component: Login
         },
         {
+            path: '/home',
+            name: 'Home',
+            component: Home
+        },
+        {
             path: '/subject',
             name: 'Subject',
             component: Subject,
             children: [
                 {
-                    path:'offer',
-                    name:'Offer',
-                    component:Offer
+                    path: 'offer',
+                    name: 'Offer',
+                    component: Offer
                 },
-                {
-                    path: 'home',
-                    name: 'Home',
-                    component: Home
-                },
+
                 {
 
                     path: 'apperance',

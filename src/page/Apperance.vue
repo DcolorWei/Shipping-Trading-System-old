@@ -1,6 +1,6 @@
 <template>
-    <el-container>
-        <el-aside width="168px" style="overflow: hidden">
+    <el-container style="background:#35415E;">
+        <el-aside width="168px" style="overflow: hidden;background:#35415E;">
             <Aside
                 :allAblePage="allAblePage"
                 @orderPagePush="changeOrderPage"

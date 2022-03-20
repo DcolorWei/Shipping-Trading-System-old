@@ -3,7 +3,6 @@
     <el-card class="hoverFlame" v-if="shipRoute.length > 0">
       <CrossWiseTimeline :shiproute="shipRoute"></CrossWiseTimeline>
     </el-card>
-    <button class="start-btn">a</button>
     <div id="container" style="width: 1200px; height: 600px"></div>
   </el-card>
 </template>
@@ -48,42 +47,38 @@ export default {
       var map = new AMap.Map("container", {
         terrain: true,
         viewMode: "2D",
-        zoom: 13,
+        zoom: 9,
         center: [102.620455, 30.973672],
         pitch: 45,
         rotation: -90,
         showLabel: true,
-        mapStyle: "amap://styles/509934ebf66e54cbfe10ccae0056c462",
         showBuildingBlock: false,
         dragEnable: false,
+        zoomEnable: false,
       });
 
-      var loca = new Loca.Container({
+      var loca = (window.loca = new Loca.Container({
         map,
-      });
+      }));
       var path = [
-        [102.620455, 30.973672],
-        [102.620983, 30.973509],
-
-        [102.630044, 30.968308],
-        [102.630641, 30.968114],
-        [102.631158, 30.968034],
-
-        [102.634166, 30.964221],
-        [102.634372, 30.964006],
-        [102.635035, 30.963904],
-        [102.636576, 30.963516],
-        [102.637393, 30.96333],
-        [102.638094, 30.963074],
-        [102.638532, 30.962883],
-        [102.638924, 30.962616],
-        [102.639141, 30.962542],
-        [102.639412, 30.962503],
-        [102.63967, 30.962478],
-        [102.639925, 30.962482],
-        [102.640288, 30.96258],
-        [102.640659, 30.962719],
-
+        [102.634142, 30.966406],
+        [102.63411, 30.966188],
+        [102.633993, 30.965986],
+        [102.642626, 30.96264],
+        [102.642985, 30.962378],
+        [102.643326, 30.962075],
+        [102.643653, 30.961789],
+        [102.644024, 30.961593],
+        [102.644532, 30.961468],
+        [102.645027, 30.96138],
+        [102.645491, 30.961254],
+        [102.645931, 30.961111],
+        [102.646739, 30.960731],
+        [102.647004, 30.960562],
+        [102.829334, 30.992772],
+        [102.829429, 30.992917],
+        [102.829611, 30.993071],
+        [102.829925, 30.993177],
         [102.831209, 30.993469],
         [102.832315, 30.99383],
         [102.834562, 30.994623],
@@ -104,7 +99,7 @@ export default {
         isOutline: false,
         strokeColor: "#00E98F",
         strokeOpacity: 1,
-        strokeWeight: 16,
+        strokeWeight: 3,
         strokeStyle: "solid",
         lineJoin: "round",
         lineCap: "round",
@@ -125,12 +120,11 @@ export default {
         }
         requestAnimationFrame(run);
       }
-
       run();
 
       loca.animate.start();
       document
-        .querySelector(".start-btn")
+        .querySelector("#container")
         .addEventListener("click", function () {
           finished = false;
           polyline.setPath([
@@ -140,7 +134,7 @@ export default {
           loca.viewControl.addTrackAnimate(
             {
               path: path, // 镜头轨迹，二维数组，支持海拔
-              duration: 12000, // 时长
+              duration: 10000, // 时长
               timing: [
                 [0, 0.3],
                 [1, 0.7],
@@ -149,6 +143,7 @@ export default {
             },
             function () {
               finished = true;
+              console.log("完成");
             }
           );
         });
@@ -172,12 +167,17 @@ export default {
   },
 };
 </script>
-
 <style>
 .hoverFlame {
   position: fixed;
   margin-left: 3%;
   margin-top: 30%;
   z-index: 6;
+}
+.amap-ani {
+  width: 24px;
+  height: 32px;
+  background: url("https://a.amap.com/Loca/static/loca-v2/demos/images/track_marker.png");
+  background-size: 24px 32px;
 }
 </style>

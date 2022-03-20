@@ -1,17 +1,17 @@
 <template>
   <div>
-    <el-container>
-      <el-header>
-        <el-menu id="indexMenu" :default-active="showPage" mode="horizontal">
+    <el-container >
+      <el-header style="background:#35415E">
+        <el-menu id="indexMenu" :default-active="showPage" mode="horizontal" background-color='#35415E' style="border-bottom:1px solid"> 
           <el-menu-item
             v-for="(item, key) in menuItems"
             :index="item.menuIndex"
             :key="key"
             @click="changePage(item.menuIndex)"
-            >{{ item.menuName }}</el-menu-item
+            ><b style="color:#fff">{{ item.menuName }}</b></el-menu-item
           >
 
-          <div style="float: right; margin-right: 50px">
+          <div style="float: right; margin-right: 50px;" >
             <span
               style="
                 font-size: 16px;
@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import Home from "../page/Home.vue";
 import Apperance from "../page/Apperance.vue";
 import About from "../page/About.vue";
 
@@ -68,10 +67,6 @@ export default {
     return {
       showPage: "Apperance",
       menuItems: [
-        {
-          menuIndex: "Home",
-          menuName: "首页",
-        },
         {
           menuIndex: "Apperance",
           menuName: "仪表",
@@ -84,7 +79,6 @@ export default {
     };
   },
   components: {
-    Home,
     Apperance,
     About,
   },
