@@ -2,70 +2,23 @@
 <template>
   <el-container>
     <el-main style="background: #2a3550">
-      <!--四个数据展示区块-->
-      <div
-        :style="{
-          height: 300 + 'px',
-        }"
-      >
-        <el-row :gutter="20">
-          <el-col :span="6" v-for="(item, key) in datablock" :key="key">
-            <el-col @load="getallblock()">
-              <el-card class="infocard" shadow="hover">
-                <DataInfo :item="item"></DataInfo>
-              </el-card>
-            </el-col>
-          </el-col>
-        </el-row>
-      </div>
-
-      <!--Echarts与Timeout-->
-      <div class="mapdata" style="height: 400px">
-        <el-row :gutter="10">
-          <el-col :span="12">
-            <el-card shadow="hover" style="border:1px #35415E;border-radius: 5px; height: 400px;background:#35415E">
-              <EchartsTable :blockdata="timeLineTable"></EchartsTable>
-            </el-card>
-          </el-col>
-          <el-col :span="11">
-            <el-card
-              shadow="hover"
-              id="timelineFrame"
-              style="border:1px #35415E;border-radius: 10px; height: 400px;background:#35415E"
-            >
-              <Timeline :timeLineTable="timeLineTable"></Timeline>
-            </el-card>
-          </el-col>
-        </el-row>
-      </div>
+      <el-empty description="通过仪表进行管理"></el-empty>
     </el-main>
   </el-container>
 </template>
 <script>
-import DataInfo from "../../components/apperance/DataInfo.vue";
-import EchartsTable from "../../components/apperance/EchartsTable.vue";
-import Timeline from "../../components/apperance/Timeline.vue";
-import datastore from "@/assets/data/datablock.ts";
+
 export default {
   name: "Infoshow",
   components: {
-    DataInfo,
-    Timeline,
-    EchartsTable,
-    datastore,
+
   },
   data() {
     return {
-      datablock: datastore.datablock, //获得所有区块（或者加载完成瞬间时的最新几个区块）
-      timeLineTable: datastore.timeLineTable, //时间线数据，要求实时更新，使用WebSocket
+     
     };
   },
 
-  mounted() {
-    datastore.getBlockInfo();
-    datastore.getAllBlock(); //通过store加载所有数据
-    datastore.getNewBlock(); //更新数据
-  },
 };
 </script>
 
@@ -86,102 +39,4 @@ export default {
   text-align: center;
   line-height: 10px;
 }
-
-.el-main {
-  background-color: #e9eef3;
-  color: var(--el-text-color-primary);
-  text-align: center;
-  line-height: 10px;
-}
-
-.el-row {
-  margin-bottom: 20px;
-}
-.el-col {
-  border-radius: 4px;
-}
-
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-}
-
-.infinite-list {
-  height: 300px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.infinite-list-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  background: var(--el-color-primary-light-9);
-  color: var(--el-color-primary);
-}
-
-#timelineFrame {
-  border-radius: 10px;
-  height: 300px;
-  overflow: auto;
-}
-#timelineFrame::-webkit-scrollbar {
-  /*滚动条整体样式*/
-  width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
-  height: 1px;
-}
-#timelineFrame::-webkit-scrollbar-thumb {
-  /*滚动条里面小方块*/
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
-  background: rgba(220, 220, 220);
-}
-#timelineFrame::-webkit-scrollbar-track {
-  /*滚动条里面轨道*/
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  background: rgba(255, 255, 255);
-}
-
-.infocard {
-  border: 4px solid #00f9b0;
-  border-radius: 1px;
-  width: 300px;
-  height: 250px;
-  background: #35415e;
-  animation: borderchange 4s infinite;
-}
-@keyframes borderchange {
-  0% {
-    border-image: -webkit-linear-gradient(#cdf18a, #2ed) 20 20;
-    border-image: -moz-linear-gradient(#cdf18a, #2ed) 20 20;
-    border-image: -o-linear-gradient(#cdf18a, #2ed) 20 20;
-    border-image: linear-gradient(#cdf18a, #2ed) 20 20;
-  }
-  25% {
-    border-image: -webkit-linear-gradient(#c0ad77, #2ed) 20 20;
-    border-image: -moz-linear-gradient(#c0ad77, #2ed) 20 20;
-    border-image: -o-linear-gradient(#c0ad77, #2ed) 20 20;
-    border-image: linear-gradient(#c0ad77, #2ed) 20 20;
-  }
-  75% {
-    border-image: -webkit-linear-gradient(#c0ad77, rgb(245, 112, 71)) 20 20;
-    border-image: -moz-linear-gradient(#c0ad77, rgb(245, 112, 71)) 20 20;
-    border-image: -o-linear-gradient(#c0ad77, rgb(245, 112, 71)) 20 20;
-    border-image: linear-gradient(#c0ad77, rgb(245, 112, 71)) 20 20;
-  }
-  99% {
-    border-image: -webkit-linear-gradient(#cdf18a, #2ed) 20 20;
-    border-image: -moz-linear-gradient(#cdf18a, #2ed) 20 20;
-    border-image: -o-linear-gradient(#cdf18a, #2ed) 20 20;
-    border-image: linear-gradient(#cdf18a, #2ed) 20 20;
-  }
-}
-
-
 </style>

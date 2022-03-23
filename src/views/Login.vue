@@ -112,7 +112,7 @@ export default {
             }).then((error)=>{
                 alert("账号或密码错误！");//后面肯定是要改的
             });
-             location.assign("/subject");
+             location.assign("http://localhost:8080/#/home");
         },
     },
 };

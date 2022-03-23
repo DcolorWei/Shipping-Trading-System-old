@@ -2,7 +2,15 @@
   <div>
     <el-container>
       <el-main>
-        <el-table :data="tabledata" style="width: 100%" stripe>
+        <el-table :data="tabledata" style="width: 100%" stripe
+         header-cell-style="
+                        background:#35415E;
+                        border:1px solid #00f9b0
+          "
+          cell-style="
+                        background:#35415E;
+                        border:1px solid #00f9b0
+                        ">
           <el-table-column
             align="center"
             v-for="(item, index) in tableItem"

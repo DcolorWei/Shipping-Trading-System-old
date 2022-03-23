@@ -59,7 +59,19 @@
     </el-card>
 
     <el-card style="margin-top: 20px">
-      <el-table :data="schedule" style="width: 100%" stripe>
+      <el-table
+        :data="matter.shippingSchedule"
+        style="width: 100%"
+        stripe
+        header-cell-style="
+                        background:#35415E;
+                        border:1px solid #00f9b0
+          "
+        cell-style="
+                        background:#35415E;
+                        border:1px solid #00f9b0
+                        "
+      >
         <el-table-column width="55" :prop="item">
           <template slot-scope="prop">
             <el-row>
@@ -300,6 +312,7 @@ export default {
     };
   },
   mounted() {
+    console.log(this.matter);
     fetch("http://127.0.0.1:8081/getschedule")
       .then((response) => response.json())
       .then((data) => (this.schedule = data));

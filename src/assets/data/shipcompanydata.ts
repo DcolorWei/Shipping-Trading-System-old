@@ -13,6 +13,12 @@ const company = {
             companyName: "马士基",
             shipagent:"船代B"
         },
+        {
+            value:2,
+            companyID: "S42p21",
+            companyName: "马士基",
+            shipagent:"船代C"
+        },
     ],
     value: "",
 };

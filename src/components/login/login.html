@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en" class="no-js">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +14,13 @@
         </script>
     <![endif]-->
 </head>
+
 <body>
+    <div class="bg" :height="800" width="1200px">
+        <div class="img_box">
+            <video src="./img/ship.mp4" muted autoplay loop :width="fullWidth + 'px'" />
+        </div>
+    </div>
     <div class="container demo-1">
         <div class="content">
             <div id="large-header" class="large-header">
@@ -27,16 +34,19 @@
                             <span class="u_user">
                             </span>
                             <input name="logname" class="text" style="color: #FFFFFF !important" type="text"
-                                   placeholder="请输入账户">
+                                placeholder="请输入账户">
                         </div>
                         <div class="input_outer">
                             <span class="us_uer">
                             </span>
-                            <input name="logpass" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"
-                                   value="" type="password" placeholder="请输入密码">
+                            <input name="logpass" class="text"
+                                style="color: #FFFFFF !important; position:absolute; z-index:100;" value=""
+                                type="password" placeholder="请输入密码">
                         </div>
                         <div class="mb2">
-                            <a class="act-but submit" href="javascript:;" style="color: #FFFFFF">
+                            <a class="act-but submit" href="javascript:;"
+                                style="background-color: darkgrey; color: #FFFFFF"
+                                onclick="location.assign('http://localhost:8080/#/home')">
                                 登录
                             </a>
                         </div>
@@ -51,6 +61,30 @@
     </script>
     <script src="js/demo-1.js">
     </script>
+    <script>
+
+    </script>
+    <style>
+        .bg {
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+
+        .bg .img_box {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bg .img_box img {
+            position: fixed;
+            /* 固定图片位置 */
+        }
+    </style>
 </body>
 
 </html>

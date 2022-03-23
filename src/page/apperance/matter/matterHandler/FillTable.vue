@@ -20,7 +20,7 @@
       ></path>
     </svg>
 
-    <el-card class="box-card">
+    <el-card class="box-card" style="background:#35415E;border:1px solid #35415E">
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="任务ID" prop="matterID">
@@ -81,7 +81,7 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-card class="box-card" style="margin-top: 20px">
+    <el-card class="box-card" style="margin-top: 20px;background:#35415E;border:1px solid #35415E" >
       <el-row>
         <el-form-item label="货物列表" prop="name">
           <el-table
@@ -90,6 +90,14 @@
             width="1200"
             stripe
             border
+             header-cell-style="
+                        background:#35415E;
+                        border:1px solid #00f9b0
+          "
+          cell-style="
+                        background:#35415E;
+                        border:1px solid #00f9b0
+                        "
           >
             <el-table-column label="序号" width="50" align="center">
               <template slot-scope="props">

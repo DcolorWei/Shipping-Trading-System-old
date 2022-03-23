@@ -1,9 +1,31 @@
 <template>
-  <el-card>
+  <el-card
+    style="margin-top: 20px; border: 1px solid #35415e; background: #35415e"
+  >
     <el-card class="hoverFlame" v-if="shipRoute.length > 0">
       <CrossWiseTimeline :shiproute="shipRoute"></CrossWiseTimeline>
     </el-card>
     <div id="container" style="width: 1200px; height: 600px"></div>
+    <el-card style="position: fixed; top: 200px; right: 100px; width: 300px">
+      <el-collapse id="collapse" v-model="activeName" accordion @change="startAni()">
+        <el-collapse-item title="🚢大连-西雅图" name="2">
+          <el-timeline :reverse="false">
+              <el-timeline-item
+                v-for="(activity, index) in activities"
+                :key="index"
+                :color="index == 0 ? '#0bbd87' : '#6495ED'"
+                :timestamp="activity.timestamp"
+              >
+                <span> {{ activity.content }}</span>
+              </el-timeline-item>
+            </el-timeline>
+            <el-button id="a">地图演示</el-button>
+        </el-collapse-item>
+        <el-collapse-item title="🚢大连-马尼拉" name="3">
+          
+        </el-collapse-item>
+      </el-collapse>
+    </el-card>
   </el-card>
 </template>
 
@@ -18,6 +40,21 @@ export default {
   data() {
     return {
       shipRoute: [],
+      activities: [
+        {
+          content: "订舱成功",
+          timestamp: "2018-04-15",
+        },
+        {
+          content: "装货中",
+          timestamp: "2018-04-13",
+        },
+        {
+          content: "货物已到达码头",
+          timestamp: "2018-04-11",
+        },
+      ],
+      activeName: "1",
     };
   },
   methods: {
@@ -33,6 +70,7 @@ export default {
     change1: function (shipRoute) {
       this.$data.shipRoute = shipRoute;
     },
+    
   },
   mounted() {
     AMapLoader.load({
@@ -47,54 +85,55 @@ export default {
       var map = new AMap.Map("container", {
         terrain: true,
         viewMode: "2D",
-        zoom: 9,
-        center: [102.620455, 30.973672],
+        zoom: 3,
+        center: [121.603077, 38.912069],
         pitch: 45,
-        rotation: -90,
         showLabel: true,
         showBuildingBlock: false,
         dragEnable: false,
-        zoomEnable: false,
+        mapStyle: "amap://styles/dark",
+        zIndex: [2, 20],
       });
 
       var loca = (window.loca = new Loca.Container({
         map,
       }));
       var path = [
-        [102.634142, 30.966406],
-        [102.63411, 30.966188],
-        [102.633993, 30.965986],
-        [102.642626, 30.96264],
-        [102.642985, 30.962378],
-        [102.643326, 30.962075],
-        [102.643653, 30.961789],
-        [102.644024, 30.961593],
-        [102.644532, 30.961468],
-        [102.645027, 30.96138],
-        [102.645491, 30.961254],
-        [102.645931, 30.961111],
-        [102.646739, 30.960731],
-        [102.647004, 30.960562],
-        [102.829334, 30.992772],
-        [102.829429, 30.992917],
-        [102.829611, 30.993071],
-        [102.829925, 30.993177],
-        [102.831209, 30.993469],
-        [102.832315, 30.99383],
-        [102.834562, 30.994623],
+        [121.603077, 38.912069],
+        [121.601567, 38.926337],
+        [121.616993, 38.926481],
+        [121.636986, 38.933106],
+        [121.639516, 38.933442],
+        [121.647229, 38.931042],
+        [121.648525, 38.931042],
+        [121.649635, 38.930514],
+        [121.653276, 38.932434],
+        [121.657349, 38.93109],
+        [121.653584, 38.933538],
+        [121.656176, 38.938625],
+        [123.936247, 34.091177],
+        [127.852083, 29.879837],
+        [143.944981, 30.277214],
+        [149.944981, 31.277214],
+        [152.944981, 30.277214],
+        [153.944981, 30.277214],
+        [159.944981, 30.277214],
+        [165.944981, 32.277214],
+        [179.944981, 33.277214]
       ];
 
       // 轨迹
+
       var marker = new AMap.Marker({
-        position: [102.834562, 30.994623],
+        position: [121.603077, 38.912069],
         content: '<div class="amap-ani"></div>',
         anchor: "bottom-center",
         map: map,
       });
       var polyline = new AMap.Polyline({
         path: [
-          [102.620456, 30.973672],
-          [102.620456, 30.973672],
+          [121.603077, 38.912069],
+          [121.603077, 38.912069],
         ],
         isOutline: false,
         strokeColor: "#00E98F",
@@ -123,14 +162,33 @@ export default {
       run();
 
       loca.animate.start();
-      document
-        .querySelector("#container")
-        .addEventListener("click", function () {
+      document.querySelector('#a').addEventListener('click',()=>{
           finished = false;
           polyline.setPath([
-            [102.620456, 30.973672],
-            [102.620456, 30.973672],
+            [121.603077, 38.912069],
+            [121.603077, 38.912069]
           ]);
+          loca.viewControl.addAnimates(
+            [
+              {
+                // 缩放等级动画
+                zoom: {
+                  value: 3, // 动画终点的地图缩放等级
+                  control: [
+                    [0.4, 9],
+                    [0.6, 5],
+                    [0.8, 5],
+                    [1.0, 3],
+                  ], // 控制器，x是0～1的起始区间，y是zoom值
+                  timing: [0.42, 0, 0.8, 1],
+                  duration: 2000,
+                },
+              },
+            ],
+            () => {
+              // 动画执行结束
+            }
+          );
           loca.viewControl.addTrackAnimate(
             {
               path: path, // 镜头轨迹，二维数组，支持海拔
@@ -176,8 +234,8 @@ export default {
 }
 .amap-ani {
   width: 24px;
-  height: 32px;
-  background: url("https://a.amap.com/Loca/static/loca-v2/demos/images/track_marker.png");
-  background-size: 24px 32px;
+  height: 24px;
+  background: url("./box.png");
+  background-size: 24px 24px;
 }
 </style>

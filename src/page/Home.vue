@@ -14,7 +14,7 @@
         <el-row :gutter="20">
           <el-col :span="6" v-for="(item, key) in datablock" :key="key">
             <el-col @load="getallblock()">
-              <el-card class="infocard" shadow="hover">
+              <el-card class="infocard" shadow="hover" >
                 <DataInfo :item="item"></DataInfo>
               </el-card>
             </el-col>

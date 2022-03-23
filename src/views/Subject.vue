@@ -1,17 +1,23 @@
 <template>
   <div>
-    <el-container >
-      <el-header style="background:#35415E">
-        <el-menu id="indexMenu" :default-active="showPage" mode="horizontal" background-color='#35415E' style="border-bottom:1px solid"> 
+    <el-container style="min-height: 1000px">
+      <el-header style="background: #35415e">
+        <el-menu
+          id="indexMenu"
+          :default-active="showPage"
+          mode="horizontal"
+          background-color="#35415E"
+          style="border-bottom: 1px solid"
+        >
           <el-menu-item
             v-for="(item, key) in menuItems"
             :index="item.menuIndex"
             :key="key"
             @click="changePage(item.menuIndex)"
-            ><b style="color:#fff">{{ item.menuName }}</b></el-menu-item
+            ><b style="color: #fff">{{ item.menuName }}</b></el-menu-item
           >
 
-          <div style="float: right; margin-right: 50px;" >
+          <div style="float: right; margin-right: 50px">
             <span
               style="
                 font-size: 16px;
@@ -27,17 +33,18 @@
               onclick="location.assign('/login')"
               ><strong>小律</strong></span
             >
-            <el-avatar
+            
+            <el-avatar 
               style="border: none; vertical-align: middle"
               :size="54"
-              src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+              icon="el-icon-user-solid"
             ></el-avatar>
           </div>
           <div style="float: right; margin: 15px 30px">
-            <el-popconfirm 
+            <el-popconfirm
               @confirm="toMatterView()"
               confirm-button-text="前往"
-              cancel-button-text=' '
+              cancel-button-text=" "
               icon="el-icon-info"
               icon-color="red"
               title="有新的任务更新"
@@ -52,7 +59,7 @@
         </el-menu>
       </el-header>
       <!--路由展示区(未居中)-->
-      <router-view></router-view>
+      <router-view :sideStatus="sideStatus"></router-view>
     </el-container>
   </div>
 </template>
@@ -66,6 +73,7 @@ export default {
   data() {
     return {
       showPage: "Apperance",
+      sideStatus: true,
       menuItems: [
         {
           menuIndex: "Apperance",
@@ -88,13 +96,17 @@ export default {
   },
   methods: {
     changePage(page) {
-      this.showPage = page;
-      if (page == "Apperance") page += "/InfoShow"; //修复刷新路由不跳转的问题
-      this.$router.push("/Subject/" + page);
+      if (this.showPage == page) {//路由不跳转，则收起侧边栏
+        this.sideStatus = !this.sideStatus;
+      } else {
+        this.showPage = page;
+        if (page == "Apperance") page += "/InfoShow"; //修复刷新路由不跳转的问题
+        this.$router.push("/Subject/" + page);
+      }
     },
-    toMatterView(){
-        this.$router.push("/Subject/Apperance/MatterManage")
-    }
+    toMatterView() {
+      this.$router.push("/Subject/Apperance/MatterManage");
+    },
   },
 };
 </script>
