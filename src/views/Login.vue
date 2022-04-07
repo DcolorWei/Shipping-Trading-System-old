@@ -23,7 +23,7 @@
                 <el-form ref="form" :model="form">
                     <el-form-item>
                         <div id="title">
-                            <h1 :style="{ color: 'white' }">船舶区块链应用系统</h1>
+                            <h1 :style="{ color: 'white' }">船舶区块链溯源系统</h1>
                         </div>
                     </el-form-item>
                     <el-form-item>
@@ -50,7 +50,7 @@
                                 border-radius: 4px;
                                 cursor:pointer
                             "
-                            onclick="location.assign('/apperance')"
+                            onclick="location.assign('/')"
                             ><strong>登录</strong></span
                         >
                     </el-form-item>
@@ -66,6 +66,7 @@ import Bg from "../components/login/Bg";
 import axios from "axios";
 export default {
     name: "Login",
+    
     data() {
         return {
             loginPanelHeight:
@@ -77,25 +78,16 @@ export default {
                 name: "",
                 password: "",
             },
+            name:""
         };
     },
-    components: {
-        Bg,
-        axios,
+    watch:{//监听改变
+        name(newVal){
+            console.log(typeof(newVal))
+            this.form.password
+        }
     },
-
-    created() {
-        addEventListener("resize", () => {
-            let height =
-                ((document.documentElement.clientWidth / 1286) *
-                    document.documentElement.clientHeight) /
-                    2 -
-                250;
-            this.loginPanelHeight = height >= 0 ? height : 0;
-        });
-    },
-
-    methods: {
+      methods: {
         loginMethod(name, psw) {
             axios({
                 headers: {
@@ -115,6 +107,38 @@ export default {
              location.assign("http://localhost:8080/#/home");
         },
     },
+    components: {
+        Bg,
+        axios,
+    },
+
+    created() {
+        addEventListener("resize", () => {
+            let height =
+                ((document.documentElement.clientWidth / 1286) *
+                    document.documentElement.clientHeight) /
+                    2 -
+                250;
+            this.loginPanelHeight = height >= 0 ? height : 0;
+        });
+    },
+    beforeCreate(){
+
+    },
+    mounted(){
+
+    },
+    beforeMount(){
+
+    },
+    updated(){
+
+    },
+    destroyed(){
+
+    }
+
+  
 };
 </script>
 
