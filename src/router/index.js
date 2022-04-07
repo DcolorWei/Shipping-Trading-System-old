@@ -49,7 +49,7 @@ export default new Router({
         {
             path: '/',
             name: 'index',
-            redirect: '/Subject'
+            redirect: '/home'
         },
         {
             path: '/login',
