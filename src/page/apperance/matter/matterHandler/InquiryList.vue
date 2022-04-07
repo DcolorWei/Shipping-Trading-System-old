@@ -21,7 +21,11 @@
         fill="#000000"
       ></path>
     </svg>
-    <el-card class="box-card" type="flex" justify="start">
+    <el-card
+      style="background: #35415e; border: 1px solid #00f9b0"
+      type="flex"
+      justify="start"
+    >
       <div style="width: 1000px">
         <el-row :gutter="20" type="flex" justify="start">
           <el-form-item prop="matterID">
@@ -58,18 +62,22 @@
       </div>
     </el-card>
 
-    <el-card style="margin-top: 20px">
+    <el-card
+      style="margin-top: 20px; background: #35415e; border: 1px solid #00f9b0"
+    >
       <el-table
-        :data="matter.shippingSchedule"
-        style="width: 100%"
+        :data="schedule"
+        :style="{ width: '100%', color: '#fff' }"
         stripe
         header-cell-style="
                         background:#35415E;
-                        border:1px solid #00f9b0
+                        border:1px solid #00f9b0;
+                        color:#fff
           "
         cell-style="
                         background:#35415E;
                         border:1px solid #00f9b0
+                        color:#fff
                         "
       >
         <el-table-column width="55" :prop="item">
@@ -98,8 +106,8 @@
             <el-row v-if="Number(prop.row.price) == 0">
               <el-button
                 size="small"
-                type="primary"
-                @click="prop.row.price = -1"
+                type="info"
+                @click="changePrice(prop.row)"
                 round
                 >询价</el-button
               >
@@ -165,12 +173,24 @@
       </el-table>
     </el-card>
 
-    <el-card style="margin-top: 20px">
+    <el-card
+      style="margin-top: 20px; background: #35415e; border: 1px solid #00f9b0"
+    >
       <el-table
         :data="landdata"
-        style="width: 100%"
+        :style="{ width: '100%', color: '#fff' }"
         stripe
         @selection-change="(event) => con(event)"
+        header-cell-style="
+                        background:#35415E;
+                        border:1px solid #00f9b0;
+                        color:#fff
+          "
+        cell-style="
+                        background:#35415E;
+                        border:1px solid #00f9b0;
+                        color:#fff
+                        "
       >
         <el-table-column width="55" :prop="item">
           <template slot-scope="prop">
@@ -198,7 +218,7 @@
             <el-row v-if="Number(prop.row.price) == 0">
               <el-button
                 size="small"
-                type="primary"
+                type="info"
                 @click="prop.row.price = String(-1)"
                 round
                 >询价</el-button
@@ -276,8 +296,35 @@ export default {
     return {
       selectShip: -1,
       selectLand: -1,
-      schedule: [],
-      landdata: [],
+      schedule: [
+        {
+          shipCompany: "马士基",
+          sailingdate: "2022/03/23",
+          voyage: 40,
+          shipagent: "0411-34538000",
+          price: 0,
+        },
+        {
+          shipCompany: "中远海运",
+          sailingdate: "2022/03/22",
+          voyage: 38,
+          shipagent: "0411-32310089",
+          price: 14,
+        },
+        {
+          shipCompany: "马士基",
+          sailingdate: "2022/03/23",
+          voyage: 0,
+          shipagent: "0411-47200912",
+        },
+      ],
+      landdata: [
+        {
+          companyID: "大连陆运",
+          companyName: "2022/03/23",
+          price: 0,
+        },
+      ],
       tableItem: [
         {
           prop: "shipCompany",
@@ -313,17 +360,16 @@ export default {
   },
   mounted() {
     console.log(this.matter);
-    fetch("http://127.0.0.1:8081/getschedule")
-      .then((response) => response.json())
-      .then((data) => (this.schedule = data));
-
-    fetch("http://127.0.0.1:8081/landschedule")
-      .then((response) => response.json())
-      .then((data) => (this.landdata = data));
   },
   methods: {
     next() {
       this.$emit("changeForm", 3);
+    },
+    changePrice(row) {
+      row.price = -1;
+      setTimeout(function () {
+        row.price = 300;
+      }, 3000);
     },
   },
 };
@@ -334,5 +380,9 @@ export default {
   display: inline-block;
   overflow: hidden;
   animation: rotate 3s linear infinite;
+}
+
+span {
+  color: white;
 }
 </style>

@@ -20,33 +20,33 @@
       ></path>
     </svg>
 
-    <el-card class="box-card" style="background:#35415E;border:1px solid #35415E">
+    <el-card style="background: #35415e; border: 1px solid #35415e">
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="任务ID" prop="matterID">
-            <el-input disabled v-model="matter.id"></el-input>
+            <el-input  v-model="matter.id"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="7">
           <el-form-item label="委托方" prop="name">
-            <el-input disabled v-model="matter.client.name"></el-input>
+            <el-input  v-model="matter.client.name"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="5">
           <el-form-item label="电话" prop="phone">
-            <el-input disabled v-model="matter.client.phone"></el-input>
+            <el-input  v-model="matter.client.phone"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="5">
           <el-form-item label="邮箱" prop="email">
-            <el-input disabled v-model="matter.client.email"></el-input>
+            <el-input  v-model="matter.client.email"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="5">
           <el-form-item label="传真" prop="facsimile">
-            <el-input disabled v-model="matter.client.facsimile"></el-input>
+            <el-input  v-model="matter.client.facsimile"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -81,20 +81,25 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-card class="box-card" style="margin-top: 20px;background:#35415E;border:1px solid #35415E" >
+    <el-card
+      class="box-card"
+      style="margin-top: 20px; background: #35415e; border: 1px solid #35415e"
+    >
       <el-row>
         <el-form-item label="货物列表" prop="name">
           <el-table
-            :data="matter.cargoList"
+            style="color: #fff"
+            :data="cargoList"
             height="220"
             width="1200"
             stripe
             border
-             header-cell-style="
+            header-cell-style="
                         background:#35415E;
-                        border:1px solid #00f9b0
-          "
-          cell-style="
+                        border:1px solid #00f9b0;
+                         color:#fff
+              "
+            cell-style="
                         background:#35415E;
                         border:1px solid #00f9b0
                         "
@@ -184,7 +189,7 @@
         </el-form-item>
       </el-row>
     </el-card>
-    <el-card class="box-card" style="margin-top: 20px">
+    <el-card class="box-card" style="margin-top: 20px;background: #35415e; border: 1px solid #35415e">
       <el-row :gutter="20">
         <el-col :span="8">
           <el-form-item label="出货时间">
@@ -216,6 +221,21 @@ export default {
   data() {
     return {
       matter: this.$route.params.info,
+      cargoList: [
+        {
+          name: "",
+          duration: "",
+        },
+        {
+          name: "",
+        },
+        {
+          name: "",
+        },
+        {
+          name: "",
+        },
+      ],
     };
   },
   methods: {

@@ -1,11 +1,54 @@
 <!--单击仪表时，显示的默认页面-->
 <template>
-  <el-container>
-    <el-main style="background: #2a3550">
-      <el-empty description="通过仪表进行管理"></el-empty>
-    </el-main>
-  </el-container>
+    <div>
+        <el-container>
+            <el-main>
+                <div style="margin-bottom: 15px">
+                    <el-card
+                        shadow="always"
+                        :body-style="{
+                            width: 600 + 'px',
+                        }"
+                    >
+                        <el-descriptions title="账户信息" :column="2" border>
+                            <el-descriptions-item label="姓名"
+                                >张三</el-descriptions-item
+                            >
+                            <el-descriptions-item label="联系方式"
+                                >0411-3533537</el-descriptions-item
+                            >
+                            <el-descriptions-item label="所在地"
+                                >大连市</el-descriptions-item
+                            >
+                            <el-descriptions-item label="身份">
+                                <el-tag>货代</el-tag>
+                            </el-descriptions-item>
+                            <el-descriptions-item label="详细地址" :span="2"
+                                >辽宁省大连市甘井子区凌海路1号</el-descriptions-item
+                            >
+                        </el-descriptions>
+                    </el-card>
+                </div>
+                <div style="margin-bottom: 15px">
+                    <el-card
+                        shadow="always"
+                        :body-style="{
+                            width: 600 + 'px',
+                        }"
+                    >
+                        <el-descriptions title="消息一览" :column="2" border>
+                        </el-descriptions>
+                        <el-button>航务通知</el-button>
+                        <el-button>安全通知</el-button>
+                        <el-button>系统通知</el-button>
+                        <el-button>其它通知</el-button>
+                    </el-card>
+                </div>
+            </el-main>
+        </el-container>
+    </div>
 </template>
+
 <script>
 
 export default {

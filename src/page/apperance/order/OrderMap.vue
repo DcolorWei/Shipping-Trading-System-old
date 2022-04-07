@@ -6,23 +6,40 @@
       <CrossWiseTimeline :shiproute="shipRoute"></CrossWiseTimeline>
     </el-card>
     <div id="container" style="width: 1200px; height: 600px"></div>
-    <el-card style="position: fixed; top: 200px; right: 100px; width: 300px">
-      <el-collapse id="collapse" v-model="activeName" accordion @change="startAni()">
+    <el-card
+      :style="{
+        position: 'fixed',
+        top: 130 + 'px',
+        bottom: 0,
+        right: 100 + 'px',
+        width: 300 + 'px',
+        height: 350 + 'px',
+        'border-radius': 10 + 'px',
+        'box-shadow': '3px 3px 6px 3px rgba(0, 0, 0, 0.3)',
+        opacity:0.8
+        
+      }"
+    >
+      <el-collapse
+        id="collapse"
+        v-model="activeName"
+        accordion
+        style="opacity:0.8"
+        @change="startAni()"
+      >
         <el-collapse-item title="🚢大连-西雅图" name="2">
-          <el-timeline :reverse="false">
-              <el-timeline-item
-                v-for="(activity, index) in activities"
-                :key="index"
-                :color="index == 0 ? '#0bbd87' : '#6495ED'"
-                :timestamp="activity.timestamp"
-              >
-                <span> {{ activity.content }}</span>
-              </el-timeline-item>
-            </el-timeline>
-            <el-button id="a">地图演示</el-button>
-        </el-collapse-item>
-        <el-collapse-item title="🚢大连-马尼拉" name="3">
-          
+          <el-timeline :reverse="false" style="background: transparent">
+            <el-timeline-item
+              v-for="(activity, index) in activities"
+              :key="index"
+              :color="index == 0 ? '#0bbd87' : '#6495ED'"
+              :timestamp="activity.timestamp"
+              style="background: transparent"
+            >
+              <span> {{ activity.content }}</span>
+            </el-timeline-item>
+          </el-timeline>
+          <el-button id="a" style="background: #35415e">地图演示</el-button>
         </el-collapse-item>
       </el-collapse>
     </el-card>
@@ -70,9 +87,9 @@ export default {
     change1: function (shipRoute) {
       this.$data.shipRoute = shipRoute;
     },
-    
   },
   mounted() {
+    //修改collapse的背景
     AMapLoader.load({
       key: "66097d2ef459ca854fe65e014f1cd655", // 申请好的Web端开发者Key，首次调用 load 时必填
       version: "2.0", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
@@ -85,14 +102,14 @@ export default {
       var map = new AMap.Map("container", {
         terrain: true,
         viewMode: "2D",
-        zoom: 3,
+        zoom: 1,
         center: [121.603077, 38.912069],
         pitch: 45,
         showLabel: true,
         showBuildingBlock: false,
         dragEnable: false,
         mapStyle: "amap://styles/dark",
-        zIndex: [2, 20],
+        zIndex: [1, 20],
       });
 
       var loca = (window.loca = new Loca.Container({
@@ -119,20 +136,21 @@ export default {
         [153.944981, 30.277214],
         [159.944981, 30.277214],
         [165.944981, 32.277214],
-        [179.944981, 33.277214]
+        [179.944981, 30.077214],
       ];
 
       // 轨迹
 
       var marker = new AMap.Marker({
-        position: [121.603077, 38.912069],
+        //跟随图标参数
         content: '<div class="amap-ani"></div>',
         anchor: "bottom-center",
         map: map,
       });
       var polyline = new AMap.Polyline({
+        //绘制路径的参数
         path: [
-          [121.603077, 38.912069],
+          //路径默认绘制
           [121.603077, 38.912069],
         ],
         isOutline: false,
@@ -162,51 +180,48 @@ export default {
       run();
 
       loca.animate.start();
-      document.querySelector('#a').addEventListener('click',()=>{
-          finished = false;
-          polyline.setPath([
-            [121.603077, 38.912069],
-            [121.603077, 38.912069]
-          ]);
-          loca.viewControl.addAnimates(
-            [
-              {
-                // 缩放等级动画
-                zoom: {
-                  value: 3, // 动画终点的地图缩放等级
-                  control: [
-                    [0.4, 9],
-                    [0.6, 5],
-                    [0.8, 5],
-                    [1.0, 3],
-                  ], // 控制器，x是0～1的起始区间，y是zoom值
-                  timing: [0.42, 0, 0.8, 1],
-                  duration: 2000,
-                },
-              },
-            ],
-            () => {
-              // 动画执行结束
-            }
-          );
-          loca.viewControl.addTrackAnimate(
+      document.querySelector("#a").addEventListener("click", () => {
+        finished = false;
+        polyline.setPath([[121.603077, 38.912069]]);
+        loca.viewControl.addAnimates(
+          [
             {
-              path: path, // 镜头轨迹，二维数组，支持海拔
-              duration: 10000, // 时长
-              timing: [
-                [0, 0.3],
-                [1, 0.7],
-              ], // 速率控制器
-              rotationSpeed: 0, // 每秒旋转多少度
+              // 缩放等级动画
+              zoom: {
+                value: 3, // 动画终点的地图缩放等级
+                control: [
+                  [0.1, 10],
+                  [0.4, 3],
+                  [0.8, 3],
+                  [1.0, 3],
+                ], // 控制器，x是0～1的起始区间，y是zoom值
+                timing: [0.22, 0, 0.4, 1],
+                duration: 10000,
+              },
             },
-            function () {
-              finished = true;
-              console.log("完成");
-            }
-          );
-        });
+          ],
+          () => {
+            // 动画执行结束
+          }
+        );
+        loca.viewControl.addTrackAnimate(
+          {
+            path: path, // 镜头轨迹，二维数组，支持海拔
+            duration: 10000, // 时长
+            timing: [
+              [0, 0.3],
+              [1, 0.7],
+            ], // 速率控制器
+            rotationSpeed: 0, // 每秒旋转多少度
+          },
+          function () {
+            finished = true;
+            console.log("完成");
+            loca.remove(polyline);
+          }
+        );
+      });
 
-      loca.animate.start();
       mattersList.forEach((element) => {});
 
       // 绑定事件

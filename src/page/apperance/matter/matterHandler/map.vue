@@ -32,7 +32,7 @@
       </div>
       <div style="float: left">
         <span style="font-size: 24px; line-height: 76px; padding-left: 14px"
-          ><b>等待运输方处理</b></span
+          ><b style="color:white">等待运输方处理</b></span
         >
       </div>
     </div>
@@ -45,17 +45,6 @@
       <el-col :span="8">
         <el-card shadow="hover" id="timelineFrame">
           <div style="height: 400px; text-align: left">
-            <el-timeline :reverse="false">
-              <el-timeline-item
-                v-for="(activity, index) in activities"
-                :key="index"
-                :color="index == 0 ? '#0bbd87' : '#6495ED'"
-                :timestamp="activity.timestamp"
-              >
-                <span> {{ activity.content }}</span>
-              </el-timeline-item>
-            </el-timeline>
-            <el-card shadow="nerve">aaa</el-card>
             <el-timeline :reverse="false">
               <el-timeline-item
                 v-for="(activity, index) in activities"
@@ -80,7 +69,10 @@ export default {
   name: "map",
   data() {
     return {
-      activities: [],
+      activities: [{
+          content: "订舱成功",
+          timestamp: "2018-04-15",
+        },],
     };
   },
   mounted() {
@@ -124,20 +116,6 @@ export default {
         circleMarker.setMap(map);
         var path = [
           new AMap.LngLat(121.603077, 38.912069),
-          new AMap.LngLat(121.601567, 38.926337),
-          new AMap.LngLat(121.616993, 38.926481),
-          new AMap.LngLat(121.636986, 38.933106),
-
-          new AMap.LngLat(121.639516, 38.933442),
-          new AMap.LngLat(121.647229, 38.931042),
-          new AMap.LngLat(121.648525, 38.931042),
-          new AMap.LngLat(121.649635, 38.930514),
-
-          new AMap.LngLat(121.653276, 38.932434),
-          new AMap.LngLat(121.657349, 38.93109),
-          new AMap.LngLat(121.658089, 38.932242),
-          new AMap.LngLat(121.653584, 38.933538),
-          new AMap.LngLat(121.656176, 38.938625),
         ];
 
         // 创建折线实例

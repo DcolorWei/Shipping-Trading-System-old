@@ -3,7 +3,6 @@
       <transition mode="move">
     <el-aside width="168px" class="side" v-show="sideStatus">
       <Aside
-        :allAblePage="allAblePage"
         @orderPagePush="changeOrderPage"
       ></Aside>
     </el-aside>
@@ -28,9 +27,6 @@ export default {
   name: "Apperance",
   props: ["sideStatus"],
   data() {
-    return {
-      allAblePage: ["OrderMange", "OrderSearch"],
-    };
   },
   components: {
     Aside,
@@ -40,7 +36,7 @@ export default {
     OrderAdd,
   },
   mounted() {
-    this.$router.push("/Subject/Apperance/InfoShow");
+    this.$router.push("/Subject/Apperance/AccountInfo");
   },
   methods: {
     changeOrderPage(orderPage) {

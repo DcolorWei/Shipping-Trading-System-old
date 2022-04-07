@@ -9,21 +9,21 @@
                             width: 600 + 'px',
                         }"
                     >
-                        <el-descriptions title="客户信息" :column="2" border>
-                            <el-descriptions-item label="客户名"
-                                >柳江航务</el-descriptions-item
+                        <el-descriptions title="账户信息" :column="2" border>
+                            <el-descriptions-item label="姓名"
+                                >张三</el-descriptions-item
                             >
                             <el-descriptions-item label="联系方式"
-                                >0772-3533537</el-descriptions-item
+                                >0411-3533537</el-descriptions-item
                             >
                             <el-descriptions-item label="所在地"
-                                >柳州市</el-descriptions-item
+                                >大连市</el-descriptions-item
                             >
                             <el-descriptions-item label="身份">
-                                <el-tag>市政机关</el-tag>
+                                <el-tag>货代</el-tag>
                             </el-descriptions-item>
                             <el-descriptions-item label="详细地址" :span="2"
-                                >广西壮族自治区柳州市柳江区柳堡路33号</el-descriptions-item
+                                >辽宁省大连市甘井子区凌海路1号</el-descriptions-item
                             >
                         </el-descriptions>
                     </el-card>
