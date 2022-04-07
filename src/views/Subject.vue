@@ -31,7 +31,7 @@
                 cursor: pointer;
               "
               onclick="location.assign('/login')"
-              ><strong>小律</strong></span
+              ><strong>admin</strong></span
             >
             
             <el-avatar 
