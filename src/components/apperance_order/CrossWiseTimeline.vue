@@ -1,6 +1,6 @@
 <template>
-    <div class="ul_box">
-        <ul class="my_timeline" ref="mytimeline">
+    <div class="ul_box" style="background:transparent">
+        <ul class="my_timeline" ref="mytimeline" style="background:transparent">
             <li class="my_timeline_item" v-for="(item, index) in shiproute" :key="index">
                 <!--线-->
                 <div
@@ -26,7 +26,7 @@
                     v-bind:class="item.type"
                     style="text-align: left"
                     :style="{
-                        color: '#111',
+                        color: '#fff',
                         fontSize: 14 + 'px',
                     }"
                 >

@@ -1,6 +1,6 @@
 <template>
   <div class="btn">
-    <span style="font-size:30px;color:#78ffcd" @click="manage()">船舶区块链应用系统</span>
+    <span style="font-size:30px;color:#78ffcd" @click="manage()">船舶区块链溯源系统</span>
     <div class="dot"></div>
   </div>
 </template>
@@ -10,7 +10,7 @@ export default {
   name: "HomeTitle",
   methods:{
     manage(){
-      location.assign('#/Subject/Apperance/InfoShow');
+      location.assign('#/Subject/Apperance/AccountInfo');
     }
   }
 };
